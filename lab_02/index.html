@@ -1,10 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; url=README.md">
-  <script>window.location = "README.md";</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 02 — The Ultimate Guide to Writing a Good Commit Message</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <p>Redirecting to <a href="README.md">README.md</a>...</p>
+  <nav class="navbar">
+    <a href="/">← Mastering Git and GitHub</a>
+  </nav>
+  <main class="container">
+    <h1>The Ultimate Guide to Writing a Good Commit Message</h1>
+    <p class="lead">This lab focuses on one of the most important soft skills in software development: writing clear, consistent, and meaningful Git commit messages. A good commit message is more than a formality; it is a communication tool that tells the story of your project, helps teammates understand changes quickly, and makes debugging and maintenance far easier. By the end of this lab, you will understand the structure of a strong commit message, how to apply conventions like Conventional Commits, and how to maintain a clean, professional project history.</p>
+
+    <h3>Important of good commit messages</h3>
+    <ol>
+      <li><strong>Project clarity and maintainability:</strong> Good commit messages act as a historical record that explains why changes were made. This makes it easier for anyone working on the project to understand its evolution, onboard quickly, and maintain the codebase without relying on memory or scattered documentation.</li>
+      <li><strong>Efficient debugging and troubleshooting:</strong> When a bug appears, a well-maintained commit history allows you to use tools like <code>git bisect</code> to pinpoint exactly when the issue was introduced. Clear commit messages make this process much faster by providing human-readable context at each step.</li>
+      <li><strong>Professional collaboration and code review:</strong> Teams depend on commit messages to understand what changed before reviewing code, merging branches, or preparing releases. Consistently writing high-quality messages shows discipline, reduces miscommunication, and keeps collaboration smooth across distributed or growing teams.</li>
+    </ol>
+
+    <h2>Step 1: The Basics of Git Commits Messages</h2>
+    <h3>Documenting Chnages</h3>
+    <p>Every commit is a snapshot of your work. Writing clear commit messages is essential because they serve as the primary documentation of why a change was made. Good commit messages help you and your team understand the project's history, debug issues, and maintain code quality over time.</p>
+
+    <h3>Anatomy of a Commit Message</h3>
+    <p>A well-written commit message should contain the following elements:</p>
+    <ol>
+      <li><strong>Title:</strong> A short, imperative summary of the change (ideally under 50 characters).</li>
+      <li><strong>Body:</strong> A longer explanation of what changed and why. This is where you provide context, reasoning, and any important details that the title cannot convey.</li>
+      <li><strong>Footer:</strong> Optional section for metadata, such as breaking change notes, issue references, or co-author credits.</li>
+    </ol>
+
+    <h3>Utilizing Components Effectively</h3>
+    <p>Here are some tips on how to use each part of the commit structure effectively:</p>
+    <ol>
+      <li><strong>Title:</strong> Make it descriptive and action-oriented. Use the imperative mood, such as "Add user authentication" rather than "Added user authentication" or "Adds user authentication". This keeps the commit history consistent and readable.</li>
+      <li><strong>Body:</strong> Explain the motivation behind the change. Describe the problem you are solving and how the change addresses it. If the change is non-obvious, provide enough detail so someone unfamiliar with the context can understand why it was necessary.</li>
+      <li><strong>Footer:</strong> Use this space for references like <code>Fixes #123</code> or <code>BREAKING CHANGE: removed old API endpoint</code>. This ensures that commit history is linked directly to project management tools and that breaking changes are clearly communicated.</li>
+    </ol>
+
+    <h2>Step 2: Convectional Commits: Enforcing Consistency in Commit Messages</h2>
+    <p>Conventional Commits is a lightweight convention for writing commit messages that enables automated tooling, changelog generation, and semantic versioning. Every commit message follows a structured format that makes the history machine-readable and human-friendly.</p>
+    <ol>
+      <li><strong>Types:</strong> The first word of the commit message indicates the kind of change. Common types include <code>feat</code> for new features, <code>fix</code> for bug fixes, <code>docs</code> for documentation, <code>style</code> for formatting changes, <code>refactor</code> for code restructuring, <code>test</code> for adding tests, and <code>chore</code> for maintenance tasks.</li>
+      <li><strong>Scope:</strong> An optional parenthetical section that indicates which part of the codebase is affected. For example, <code>feat(auth): add login rate limiting</code> immediately tells a reviewer that the change is specific to the authentication module.</li>
+      <li><strong>Description:</strong> A short, imperative sentence explaining what the change does. Keep it concise but informative.</li>
+      <li><strong>Body:</strong> An optional longer explanation providing additional context, reasoning, or implementation details. Use this when the change is complex or requires background knowledge.</li>
+      <li><strong>Footer:</strong> An optional area for metadata, such as <code>BREAKING CHANGE:</code> notes or issue references. This is especially important for libraries and APIs where consumers need to know about backward-incompatible changes.</li>
+    </ol>
+
+    <p>Implemeting Conventional commits brings several advantages to development teams:</p>
+    <ol>
+      <li><strong>Enhanced Readability:</strong> The standardized format makes it easy to scan commit history and understand the nature of each change at a glance.</li>
+      <li><strong>Automated Tooling Comptibility:</strong> Tools can parse conventional commits to generate changelogs, determine version bumps, and trigger deployment pipelines.</li>
+      <li><strong>Improved Collaboration:</strong> Team members communicate more clearly when every commit message follows the same predictable structure.</li>
+    </ol>
+
+    <h2>Step 3: Best Practices for Writing Commit Messages</h2>
+    <p>Writing great commit messages is a habit that comes from following simple rules. The goal is to make every commit self-contained, informative, and easy to review.</p>
+    <ol>
+      <li><strong>Keeping it concise yet descriptive:</strong> Aim for a title under 50 characters and a body wrapped at 72 characters per line. Be direct but thorough. A good commit message should explain what changed and why, without forcing the reader to inspect the diff.</li>
+      <li><strong>Focusing on "what" and "why":</strong> Describe the reason for the change, not just the mechanics. Instead of saying "Updated index.js", say "Refactor index.js to improve error handling for invalid user input". Context is everything.</li>
+      <li><strong>Using the imperative mood:</strong> Write the title as if you are giving an instruction: "Add payment validation" instead of "Added payment validation". This keeps the commit history consistent and professional.</li>
+      <li><strong>Reviewing and revising before finalizing:</strong> Before you commit, read your message out loud. If it sounds awkward or unclear, rewrite it. A few extra seconds of editing prevents hours of confusion later.</li>
+      <li><strong>Leveraging commit message templates:</strong> Use a <code>.gitmessage.txt</code> file or Git hooks to enforce a template. This reduces friction and ensures that every contributor follows the same conventions.</li>
+      <li><strong>Avoiding ambiguity:</strong> Stay away from vague language. "Fix stuff" or "WIP" are not acceptable final commit messages. Be specific about what was fixed and why.</li>
+      <li><strong>Linking to relevant issues:</strong> Reference issue trackers, Jira tickets, or pull request IDs directly in the footer or body. For example, <code>Closes #42</code> automatically closes the issue when the commit is merged.</li>
+    </ol>
+
+    <h2>Step 4: Commit Message Linting and Validation Tools</h2>
+    <p>In visual studio code, you can use the following extensions to help you write better commit messages:</p>
+    <ol>
+      <li><strong>Commitizen:</strong> A command-line tool that walks you through each part of a conventional commit message, ensuring you do not miss required fields. It acts as an interactive wizard for commits.</li>
+      <li><strong>Commitlint:</strong> A linter for commit messages that enforces rules such as character limits, allowed types, and required sections. It can be integrated into Git hooks using <code>husky</code> or <code>lint-staged</code> to block invalid commits.</li>
+      <li><strong>GitLens:</strong> An extension that enriches the Git experience in VS Code with inline blame annotations, commit search, and rich commit details. It makes reviewing commit history and writing meaningful messages much easier by showing context directly in the editor.</li>
+    </ol>
+
+    <h2>Step 5: Mantaining a Clean Commit History</h2>
+    <p>A clean commit history is a valuable asset. It makes code review easier, simplifies debugging, and helps new team members understand how the project evolved. Just like clean code, a clean history requires intention and discipline.</p>
+
+    <h3>The Value of Structural Commits History</h3>
+    <p>A structured commit history:</p>
+    <ol>
+      <li>Makes it easy to identify when a bug was introduced using <code>git bisect</code>.</li>
+      <li>Enables safe reverts of individual features without affecting unrelated changes.</li>
+      <li>Improves code review by giving reviewers a logical narrative of the work.</li>
+      <li>Supports automated changelogs and release notes.</li>
+    </ol>
+
+    <h3>Techniques for Commit History Optimization</h3>
+    <ol>
+      <li><strong>Interactive Rebasing:</strong> Use <code>git rebase -i</code> to reorder, squash, or edit commits before merging. This allows you to clean up messy local history, fix incorrect messages, and group related changes into single coherent commits.</li>
+      <li><strong>Logical Grouping with Fixup and squash:</strong> When making incremental fixes during code review, use <code>git commit --fixup &lt;commit-hash&gt;</code> or <code>git commit --squash &lt;commit-hash&gt;</code> to mark small follow-up commits that will automatically be combined during an interactive rebase.</li>
+    </ol>
+
+    <h2>Conclusion</h2>
+    <p>A great commit message is a small investment that pays off every time someone reads your project history. By following conventions, being descriptive, and using the right tools, you turn commits into a powerful form of communication.</p>
+    <p><strong>Dive Deeper</strong> - Explore tools like <code>git rebase -i</code>, <code>git notes</code>, and advanced <code>git log</code> formatting to further refine your workflow. Consider integrating commitlint and commitizen into your team's CI pipeline to maintain consistency across all contributors.</p>
+    <p>Mastering commit messages is a fundamental step toward becoming a more disciplined and collaborative developer.</p>
+
+    <div class="next-lab">
+      <strong>Next Lab:</strong> Ready to level up? Continue to <a href="/lab_03/">Lab 03</a>
+    </div>
+  </main>
 </body>
 </html>
