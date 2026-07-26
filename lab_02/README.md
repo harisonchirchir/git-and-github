@@ -115,4 +115,4 @@ Mastering commit messages is a fundamental step toward becoming a more disciplin
 
 ---
 
-**Next Lab:** Ready to level up? Continue to [Lab 03](../lab_03/README.md)
+**Next Lab:** Ready to level up? Continue to [Lab 03](../lab_03/)

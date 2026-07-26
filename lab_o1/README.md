@@ -252,4 +252,4 @@ Proficiency in Git and GitHub will open up a world of opportunities for you as a
 
 ---
 
-**Next Lab:** Ready to level up? Continue to [Lab 02 - The Ultimate Guide to Writing a Good Commit Message](../lab_02/README.md)
+**Next Lab:** Ready to level up? Continue to [Lab 02 - The Ultimate Guide to Writing a Good Commit Message](../lab_02/)
