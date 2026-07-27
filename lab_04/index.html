@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/">← Mastering Git and GitHub</a>
+  </nav>
+  <main class="container">
+    <h1>Mastering Git Workflows and Merge Conflict Resolution</h1>
+    <p class="lead">This lab bridges the gap between basic Git usage and real-world team collaboration. You will learn how to choose and apply the right branching model for your project, when to merge versus rebase, and how to resolve merge conflicts calmly and methodically. By the end of this lab, you will be comfortable working in teams where multiple people are changing the same codebase at the same time.</p>
+
+    <h2>Why branching workflows matter</h2>
+    <p>Branching is more than just creating a separate line of development. The strategy you choose determines how your team integrates work, releases software, and handles mistakes. Without a clear workflow, branches become chaotic, merges turn into nightmares, and code review loses meaning. A solid workflow keeps the main branch stable, makes releases predictable, and reduces the time spent fixing integration problems.</p>
+
+    <h3>Choosing the right workflow for your team</h3>
+    <ol>
+      <li><strong>Team size and experience</strong> — Small teams with experienced developers often prefer trunk-based development with short-lived branches. Larger teams or teams with junior developers usually benefit from the guardrails of Git Flow or a protected main branch.</li>
+      <li><strong>Release frequency</strong> — If you ship continuously, Git Flow may be too heavy. Trunk-based development or GitHub Flow fit continuous deployment models better.</li>
+      <li><strong>Project complexity</strong> — Libraries and SDKs often use Git Flow because they need stable release branches and hotfix isolation. Web applications and startups often prefer simpler workflows that move faster.</li>
+      <li><strong>Tooling and platform</strong> — Some platforms, such as GitHub, encourage GitHub Flow. Others, such as GitLab, have features optimized for Git Flow. Choose a workflow that feels native to your hosting platform.</li>
+    </ol>
+
+    <h2>Step 1: Understanding Branching Models</h2>
+    <p>Before resolving conflicts, you need to understand the environment in which conflicts happen. Different branching models create different types of merges and different conflict frequencies.</p>
+
+    <h3>Git Flow</h3>
+    <p>Git Flow is a structured branching model that uses long-lived branches such as <code>main</code>, <code>develop</code>, <code>feature</code>, <code>release</code>, and <code>hotfix</code>. It is designed for projects with scheduled release cycles.</p>
+    <ol>
+      <li><strong>main</strong> — Contains only production-ready code. Every commit on <code>main</code> is a deployable release.</li>
+      <li><strong>develop</strong> — The integration branch where feature branches are merged. It represents the next release under development.</li>
+      <li><strong>feature/*</strong> — Branched from <code>develop</code> and merged back into <code>develop</code> when a feature is complete.</li>
+      <li><strong>release/*</strong> — Branched from <code>develop</code> when preparing a new release. Only bug fixes and release tasks are added here.</li>
+      <li><strong>hotfix/*</strong> — Branched from <code>main</code> when a critical bug is found in production. Merged back into both <code>main</code> and <code>develop</code>.</li>
+    </ol>
+    <p>Git Flow gives you clear separation between ongoing development, releases, and emergency fixes. It is powerful but comes with overhead, making it better suited for projects with formal release schedules.</p>
+
+    <h3>GitHub Flow</h3>
+    <p>GitHub Flow is a simpler model that uses a single <code>main</code> branch and short-lived feature branches. It is ideal for projects that deploy continuously.</p>
+    <ol>
+      <li><strong>main</strong> is always deployable and contains the latest approved code.</li>
+      <li>For every change, create a descriptive branch from <code>main</code>.</li>
+      <li>Commit changes to the branch and open a pull request early.</li>
+      <li>Discuss, review, and test the changes on the pull request.</li>
+      <li>Merge the branch into <code>main</code> and deploy immediately.</li>
+    </ol>
+    <p>Because branches are short-lived and <code>main</code> is always clean, merge conflicts are usually smaller and easier to resolve. GitHub Flow works well for web applications, documentation sites, and teams practicing continuous deployment.</p>
+
+    <h3>Trunk-Based Development</h3>
+    <p>Trunk-based development is the simplest model at its core: everyone commits to a single shared branch called <code>trunk</code> or <code>main</code>, or creates very short-lived branches that are merged within hours or days.</p>
+    <ol>
+      <li>Developers either commit directly to <code>main</code> or create branches that live for less than a day.</li>
+      <li>Feature flags hide incomplete work so that the main branch always remains deployable.</li>
+      <li>Pull requests are tiny, focused, and reviewed quickly.</li>
+      <li>Continuous integration runs on every change to catch conflicts and regressions early.</li>
+    </ol>
+    <p>Trunk-based development demands strong automated testing and a culture of keeping changes small. It is the preferred model for high-performing engineering organizations because it eliminates long-lived integration branches and reduces merge debt.</p>
+
+    <h3>Forking Workflow</h3>
+    <p>The forking workflow is the standard for open-source projects. Each contributor works on their own copy of the repository.</p>
+    <ol>
+      <li>A contributor forks the central repository to their own GitHub account.</li>
+      <li>They clone their fork locally and create feature branches.</li>
+      <li>Changes are pushed to their fork, and a pull request is opened against the original repository.</li>
+      <li>Maintainers review the pull request and merge it when approved.</li>
+    </ol>
+    <p>This model gives maintainers tight control over who can merge code. Contributors do not need write access to the central repository, which makes it safe for public projects with many unknown contributors.</p>
+
+    <h2>Step 2: Merging vs Rebasing</h2>
+    <p>Merging and rebasing are two ways to integrate changes from one branch into another. They produce different histories and are appropriate in different situations.</p>
+
+    <h3>How merging works</h3>
+    <p>Merging creates a new commit that ties together the histories of two branches. The original commits from both branches are preserved exactly as they were.</p>
+    <ol>
+      <li>Switch to the target branch, usually <code>main</code>, and pull the latest changes.</li>
+      <li>Run <code>git merge feature-branch</code>.</li>
+      <li>If there are no conflicts, Git creates a merge commit automatically.</li>
+      <li>If there are conflicts, Git pauses and asks you to resolve them before completing the merge.</li>
+    </ol>
+    <p>Merging is safe and non-destructive. It is the correct choice when you are integrating shared branches or working in a team where other people rely on the published history.</p>
+
+    <h3>How rebasing works</h3>
+    <p>Rebasing rewrites the branch history by moving the entire branch to begin on the tip of another branch. Instead of creating a merge commit, replays each commit from your branch on top of the target branch.</p>
+    <ol>
+      <li>Switch to your feature branch.</li>
+      <li>Run <code>git rebase main</code> to replay your changes on top of the latest <code>main</code>.</li>
+      <li>If conflicts appear, resolve them one at a time.</li>
+      <li>Use <code>git rebase --continue</code> after each conflict resolution.</li>
+      <li>Use <code>git rebase --abort</code> if you want to cancel the rebase and return to the original state.</li>
+    </ol>
+    <p>Rebasing produces a clean, linear history that is easier to read with <code>git log</code>. It is excellent for private feature branches before merging.</p>
+
+    <h3>When to rebase and when not to</h3>
+    <ol>
+      <li><strong>Rebase private branches</strong> — If you are the only person working on a branch, rebase onto the latest <code>main</code> frequently to keep your branch up to date.</li>
+      <li><strong>Never rebase shared branches</strong> — If multiple people are using a branch, rebasing rewrites public history and causes confusion for everyone else. In that case, use <code>git merge</code> instead.</li>
+      <li><strong>Rebase before merging</strong> — A common pattern is to rebase your feature branch onto <code>main</code> locally, then merge it with a fast-forward or a clean merge commit on GitHub.</li>
+      <li><strong>Use <code>--force-with-lease</code> carefully</strong> — After rebasing a branch that already exists on the remote, you may need to force-push. Use <code>git push --force-with-lease</code> instead of <code>git push --force</code> to avoid overwriting other people's work.</li>
+    </ol>
+
+    <h2>Step 3: Merge Conflict Resolution</h2>
+    <p>Conflicts happen when two branches change the same part of a file in incompatible ways. They are inevitable in team development, and knowing how to handle them is essential.</p>
+
+    <h3>What causes conflicts</h3>
+    <ol>
+      <li>Two developers edit the same line of code in parallel on different branches.</li>
+      <li>One developer edits a file while another developer deletes it.</li>
+      <li>Both branches rename the same file to different names.</li>
+      <li>Large refactors on long-lived branches increase the chance that overlapping changes will collide.</li>
+    </ol>
+
+    <h3>Understanding conflict markers</h3>
+    <p>When Git stops because of a conflict, it inserts conflict markers into the affected files. The markers show both versions of the conflicting content and make it clear what needs to be resolved.</p>
+    <ol>
+      <li><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> — Marks the beginning of the incoming changes from your current branch.</li>
+      <li><code>=======</code> — Separates the two conflicting sections.</li>
+      <li><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name</code> — Marks the end of the incoming changes from the branch being merged.</li>
+    </ol>
+
+    <h3>Resolving conflicts step by step</h3>
+    <ol>
+      <li>Identify the conflicting files by running <code>git status</code>. Git lists them under <code>both modified</code>.</li>
+      <li>Open each conflicting file and look for the conflict markers. Read both sides carefully to understand what each change intended to do.</li>
+      <li>Edit the file to remove the conflict markers and produce the correct final content. You can choose one side, combine both sides, or write something entirely new if both changes need adaptation.</li>
+      <li>Stage the resolved file with <code>git add &lt;file-name&gt;</code>.</li>
+      <li>After all conflicts are resolved and staged, complete the merge or rebase by running <code>git commit</code> or <code>git rebase --continue</code>.</li>
+    </ol>
+
+    <h3>Using a merge tool</h3>
+    <p>For complex conflicts, a visual merge tool can be easier than editing markers manually.</p>
+    <ol>
+      <li>Configure a merge tool such as VS Code, Meld, or KDiff3.</li>
+      <li>Run <code>git mergetool</code> to open the conflicting files in the tool.</li>
+      <li>The tool presents both changes side by side and lets you pick hunks or specific lines.</li>
+      <li>Save the resolved file and close the tool.</li>
+      <li>Stage the resolved file with <code>git add</code>.</li>
+      <li>Complete the merge or rebase.</li>
+    </ol>
+
+    <h3>Preventing unnecessary conflicts</h3>
+    <ol>
+      <li>Pull the latest changes from the target branch before starting new work.</li>
+      <li>Keep branches short-lived. The longer a branch lives, the more likely it is to diverge and conflict.</li>
+      <li>Communicate with your team about who is working on which files.</li>
+      <li>Break large changes into smaller pull requests that are easier to merge.</li>
+      <li>Rebase your feature branch onto the latest <code>main</code> regularly while you are working.</li>
+    </ol>
+
+    <h2>Step 4: Advanced Conflict Scenarios</h2>
+    <p>Not all conflicts are simple line-by-line overlaps. Some require careful judgment and specific Git tools.</p>
+
+    <h3>Rename and delete conflicts</h3>
+    <ol>
+      <li>If one branch renames a file and another branch modifies it, Git may report a conflict.</li>
+      <li>Decide whether the file should keep the new name, the old name, or both.</li>
+      <li>Use <code>git rm</code> or <code>git add</code> to resolve the tree state, then <code>git commit</code> to finish.</li>
+    </ol>
+
+    <h3>Directory-level conflicts</h3>
+    <ol>
+      <li>If both branches add files with the same name in the same directory but with different casing on case-insensitive systems, Git may struggle to represent the conflict.</li>
+      <li>Rename one of the files to a temporary unique name, merge, then rename it to the final desired name.</li>
+    </ol>
+
+    <h3>Submodule conflicts</h3>
+    <ol>
+      <li>If your repository uses Git submodules, a conflict in the submodule pointer means the superproject references different commits for the same submodule.</li>
+      <li>Enter the submodule directory, choose the correct commit or create a new merge commit inside the submodule, then update the superproject pointer and stage the change.</li>
+    </ol>
+
+    <h2>Step 5: Writing Conflict-Free Collaboration Habits</h2>
+    <p>The best conflict is the one you never have to resolve. Good habits drastically reduce conflict frequency and severity.</p>
+
+    <h3>Daily habits</h3>
+    <ol>
+      <li><strong>Pull before you push</strong> — Always fetch and rebase or merge the latest <code>main</code> into your branch before opening a pull request.</li>
+      <li><strong>Keep PRs small</strong> — Small pull requests are easier to review, merge, and revert. They also collide less with other people's work.</li>
+      <li><strong>Communicate hot files</strong> — If you know you are about to make large changes to a central file, let the team know so they can coordinate.</li>
+      <li><strong>Use descriptive branch names</strong> — Clear names help reviewers understand the scope of a branch and reduce accidental overlap.</li>
+      <li><strong>Resolve conflicts immediately</strong> — Do not let branches drift apart for days. Rebase daily if the branch will live for more than a few hours.</li>
+    </ol>
+
+    <h2>Step 6: Collaboration and Code Review</h2>
+    <p>Conflict resolution is only one part of teamwork. The rest depends on how you communicate changes and review each other's work.</p>
+
+    <h3>Writing good pull request descriptions</h3>
+    <ol>
+      <li>Explain what the pull request changes and why.</li>
+      <li>Reference the issue or task that motivated the work.</li>
+      <li>Add screenshots or recordings for frontend and design changes.</li>
+      <li>Mark the pull request as ready for review only when it is complete and self-explanatory.</li>
+    </ol>
+
+    <h3>Responding to review feedback</h3>
+    <ol>
+      <li>Read feedback carefully and ask clarifying questions instead of defending your code blindly.</li>
+      <li>Make requested changes in small, atomic commits on the same branch.</li>
+      <li>If you disagree, explain your reasoning with links to documentation, tests, or user impact.</li>
+      <li>Keep the tone professional. The goal is to improve the codebase, not to win an argument.</li>
+    </ol>
+
+    <h2>Summary and Final Thoughts</h2>
+    <p>Branching workflows and conflict resolution are the backbone of professional Git usage. A good workflow keeps <code>main</code> stable, makes releases predictable, and reduces the friction of team collaboration. Merge conflicts are not failures; they are natural signals that multiple people are improving the same project. By choosing the right model, rebasing thoughtfully, and resolving conflicts methodically, you turn Git from a source of frustration into a powerful coordination tool.</p>
+    <p><strong>Dive Deeper</strong> — Explore interactive rebasing (<code>git rebase -i</code>) for cleaning up branch history, <code>git rerere</code> for automatically reusing recorded conflict resolutions, and <code>git worktree</code> for working on multiple branches simultaneously without switching back and forth.</p>
+    <p>Mastering workflows and conflicts is what separates Git beginners from Git professionals. Keep practicing, and collaboration will feel easier with every repository you touch.</p>
+
+    <div class="next-lab">
+      <strong>Next Lab:</strong> Ready to level up? Continue to <a href="/lab_05/">Lab 05</a>
+    </div>
+  </main>
+</body>
+</html>

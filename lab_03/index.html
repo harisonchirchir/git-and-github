@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 03 — Coming Soon</title>
+  <title>Lab 03 — Free Hosting For Web Projects</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -11,10 +11,193 @@
     <a href="/">← Mastering Git and GitHub</a>
   </nav>
   <main class="container">
-    <h1>Lab 03</h1>
-    <p class="lead">This lab is coming soon. Check back later for the next hands-on exercise.</p>
+    <h1>Free Hosting For Web Projects</h1>
+    <p class="lead">This lab explores the most practical free hosting platforms for web projects. Whether you are hosting a personal portfolio, a documentation site, a small web app, or a prototype, choosing the right free hosting service can save you money and simplify deployment. By the end of this lab, you will understand the strengths and limitations of GitHub Pages, Vercel, Netlify, Surge.sh, and Render, and know how to deploy projects to each platform using their respective CLIs.</p>
+
+    <h2>Why consider free hosting?</h2>
+    <p>Free hosting allows developers, students, and hobbyists to publish web projects without paying for infrastructure. It is ideal for portfolios, open-source documentation, prototypes, and client demos. Beyond cost savings, free hosting platforms usually integrate directly with Git repositories, offer HTTPS out of the box, and handle scaling for small to moderate traffic.</p>
+
+    <h3>When free hosting makes sense</h3>
+    <ol>
+      <li><strong>Personal projects and portfolios</strong> — You can showcase your work without managing servers or paying monthly fees.</li>
+      <li><strong>Documentation and tutorials</strong> — Static documentation sites benefit from platforms that handle redirects, search, and custom domains easily.</li>
+      <li><strong>Prototypes and demos</strong> — Rapid iteration is easier when deployment is automated and free.</li>
+      <li><strong>Learning web deployment</strong> — Understanding hosting workflows, environment variables, and build processes is easier without financial risk.</li>
+    </ol>
+
+    <h3>When to upgrade beyond free hosting</h3>
+    <ol>
+      <li><strong>High traffic or production applications</strong> — Free tiers usually have bandwidth and build-time limits.</li>
+      <li><strong>Complex backend requirements</strong> — Free hosting often focuses on frontend or simple serverless functions.</li>
+      <li><strong>Team collaboration needs</strong> — Advanced previews, role management, and private deployments may require paid plans.</li>
+    </ol>
+
+    <h2>Step 1: Free hosting Sites</h2>
+    <p>This step introduces the most popular free hosting platforms and explains what makes each one suitable for different types of web projects.</p>
+
+    <h3>GitHub Pages</h3>
+    <p>GitHub Pages is a static site hosting service that takes HTML, CSS, and JavaScript files directly from a GitHub repository and publishes them through a GitHub-owned domain. It is one of the simplest ways to host documentation sites, landing pages, and portfolios.</p>
+
+    <h4>Key Benefits</h4>
+    <ol>
+      <li><strong>Completely free for public repositories</strong> — No hidden costs, no time-limited free tiers. As long as your repository is public, hosting is free.</li>
+      <li><strong>Seamless Git integration</strong> — Every push to the configured branch can trigger an automatic rebuild and deployment.</li>
+      <li><strong>Custom domain support</strong> — You can connect a custom domain with HTTPS if you already own one.</li>
+      <li><strong>Jekyll support</strong> — GitHub Pages natively supports Jekyll, making it easy to build documentation-style sites without extra build tooling.</li>
+      <li><strong>No server management</strong> — You do not need to configure servers, install packages, or manage uptime.</li>
+    </ol>
+
+    <h4>Limitations</h4>
+    <ol>
+      <li><strong>Static sites only</strong> — GitHub Pages does not support server-side rendering or traditional backend code. Everything must be static HTML, CSS, JavaScript, or pre-built assets.</li>
+      <li><strong>Build time limits</strong> — Documentation and large static sites are limited to a maximum build time, which can be restrictive for very large projects.</li>
+      <li><strong>Bandwidth and file size limits</strong> — Soft limits exist on repository size and monthly bandwidth, which may affect high-traffic projects.</li>
+      <li><strong>No server-side logic</strong> — You cannot run backend APIs, databases, or server-side processing directly on GitHub Pages.</li>
+    </ol>
+
+    <h4>Deploying to GitHub Pages</h4>
+    <ol>
+      <li>Create a repository on GitHub or use an existing one.</li>
+      <li>Add your static site files (<code>index.html</code>, CSS, JS, images) to the repository.</li>
+      <li>Go to <strong>Settings → Pages</strong> in the repository.</li>
+      <li>Under <strong>Source</strong>, select the branch you want to deploy from, usually <code>main</code> or <code>master</code>.</li>
+      <li>Save the settings. GitHub will automatically build and deploy the site.</li>
+      <li>After a few minutes, your site will be available at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>.</li>
+    </ol>
+    <p>If you want a custom deployment workflow using GitHub Actions, you can create a workflow file under <code>.github/workflows/</code> that builds your site and deploys it using the <code>actions/deploy-pages</code> action.</p>
+
+    <h4>How it stacks up</h4>
+    <p>GitHub Pages is best suited for documentation, portfolios, README-driven sites, and simple static project pages. It is the most cost-effective option if your project is already hosted on GitHub and does not require backend logic.</p>
+
+    <h3>Vercel</h3>
+    <p>Vercel is a cloud platform optimized for frontend developers. It is widely used for Next.js applications but also supports static sites, serverless functions, and other popular frameworks such as React, Vue, Svelte, and Astro.</p>
+
+    <h4>Key Features and Benefits</h4>
+    <ol>
+      <li><strong>Framework-aware deployments</strong> — Vercel automatically detects the framework you are using and configures the build process accordingly. This removes the need for manual configuration files.</li>
+      <li><strong>Zero-config deployments</strong> — Connect a Git repository, and every push triggers a preview deployment. Production deployments happen when you merge to the main branch.</li>
+      <li><strong>Edge Network and CDN</strong> — Vercel serves your site from a global edge network, making it fast for users around the world.</li>
+      <li><strong>Serverless Functions</strong> — You can deploy backend API routes alongside your frontend without managing a separate server.</li>
+      <li><strong>Preview deployments</strong> — Every pull request gets its own unique preview URL, which is extremely useful for reviewing changes before merging.</li>
+    </ol>
+
+    <h4>How to Deploy to Vercel using CLI</h4>
+    <ol>
+      <li>Install the Vercel CLI globally using npm:
+        <pre><code class="language-bash">npm install -g vercel</code></pre>
+      </li>
+      <li>Navigate to your project directory in the terminal.</li>
+      <li>Run the following command to log in:
+        <pre><code class="language-bash">vercel login</code></pre>
+      </li>
+      <li>Deploy the project by running:
+        <pre><code class="language-bash">vercel</code></pre>
+      </li>
+      <li>Follow the prompts to configure the project settings. Vercel will detect your project type, build settings, and output directory automatically in most cases.</li>
+      <li>Once complete, Vercel provides a live preview URL. To deploy to production, run:
+        <pre><code class="language-bash">vercel --prod</code></pre>
+      </li>
+    </ol>
+
+    <h4>How Does Vercel Compare to Other Hosting Services</h4>
+    <p>Vercel excels with Next.js and modern frontend frameworks because of its deep framework integration. Compared to GitHub Pages, it offers more advanced build and runtime features such as serverless functions and edge caching. Compared to Netlify, it is often faster for Next.js-specific workflows, while Netlify offers stronger support for traditional static sites and form handling.</p>
+
+    <h3>Netlify</h3>
+    <p>Netlify is a popular platform for deploying static websites and Jamstack applications. It provides a smooth developer experience through its Git-based workflow, build pipeline, and generous free tier.</p>
+
+    <h4>Key Features and Benefits</h4>
+    <ol>
+      <li><strong>Continuous deployment from Git</strong> — Netlify automatically builds and deploys your site whenever you push changes to your connected repository.</li>
+      <li><strong>Forms without backend code</strong> — Netlify Forms adds form handling and spam filtering directly to static HTML forms without requiring backend logic.</li>
+      <li><strong>Split testing and A/B testing</strong> — You can run experiments by splitting traffic between different deploys directly from the Netlify dashboard.</li>
+      <li><strong>Identity and authentication</strong> — Netlify Identity makes it easy to add user authentication to static or Jamstack sites.</li>
+      <li><strong>Edge handlers and functions</strong> — You can run serverless functions at the edge to modify requests and responses with minimal latency.</li>
+    </ol>
+
+    <h4>How to Deploy to Netlify using CLI</h4>
+    <ol>
+      <li>Install the Netlify CLI globally using npm:
+        <pre><code class="language-bash">npm install -g netlify-cli</code></pre>
+      </li>
+      <li>Log in to your Netlify account:
+        <pre><code class="language-bash">netlify login</code></pre>
+      </li>
+      <li>Initialize the project if you have not done so already:
+        <pre><code class="language-bash">netlify init</code></pre>
+      </li>
+      <li>Follow the prompts to link the project to an existing Netlify site or create a new one.</li>
+      <li>Deploy the project by running:
+        <pre><code class="language-bash">netlify deploy</code></pre>
+      </li>
+      <li>For a production deployment, use:
+        <pre><code class="language-bash">netlify deploy --prod</code></pre>
+      </li>
+    </ol>
+    <p>Netlify also supports drag-and-drop deployment through its web interface, which is useful if you simply want to upload a built folder without connecting a Git repository.</p>
+
+    <h3>Surge.sh</h3>
+    <p>Surge.sh is a minimalist static publishing platform designed for developers who want to deploy static files quickly from the command line without configuring complex build pipelines.</p>
+
+    <h4>Key Features and Benefits</h4>
+    <ol>
+      <li><strong>Simple CLI workflow</strong> — Surge is built around a single command that publishes the contents of a folder to the web.</li>
+      <li><strong>Custom domain support</strong> — You can configure custom domains easily through the CLI or dashboard.</li>
+      <li><strong>Lightweight and fast</strong> — Surge feels lightweight because it has fewer features than Vercel or Netlify, which makes it faster for small projects.</li>
+      <li><strong>No Git required</strong> — You can deploy from any folder on your local machine, which is ideal for quick experiments or simple files.</li>
+      <li><strong>Free SSL</strong> — Every Surge project automatically receives HTTPS support.</li>
+    </ol>
+
+    <h4>Deploying to Surge.sh using CLI</h4>
+    <ol>
+      <li>Install Surge globally using npm:
+        <pre><code class="language-bash">npm install -g surge</code></pre>
+      </li>
+      <li>Navigate to the folder containing your built static site.</li>
+      <li>Run the following command:
+        <pre><code class="language-bash">surge</code></pre>
+      </li>
+      <li>When prompted, enter your email and password to create or log into a Surge account.</li>
+      <li>Choose a domain name. You can use Surge's free domain or type your own custom domain.</li>
+      <li>Confirm the deployment. Surge will upload your files and provide a live URL.</li>
+    </ol>
+    <p>You can redeploy updated files by running the <code>surge</code> command again in the same directory.</p>
+
+    <h4>Comparing Surge.sh to Vercel and Netlify</h4>
+    <p>Surge.sh is ideal for quick, simple static deployments and small experiments. It does not offer framework auto-detection, serverless functions, or the advanced build pipelines that Vercel and Netlify provide. Use Surge when you want minimal configuration and speed over advanced features.</p>
+
+    <h3>Render</h3>
+    <p>Render is a unified cloud platform that supports static sites, web services, background workers, databases, and cron jobs. It is designed to replace smaller Heroku-like workflows while also supporting modern Jamstack deployments.</p>
+
+    <h4>Unique Features and Benefits</h4>
+    <ol>
+      <li><strong>Multiple service types</strong> — Render can host static sites, run backend web services, manage PostgreSQL databases, and execute scheduled cron jobs from a single platform.</li>
+      <li><strong>Automatic HTTPS</strong> — Every service on Render receives free HTTPS without manual certificate management.</li>
+      <li><strong>Git-based deployments</strong> — Connect your repository and Render will rebuild and deploy automatically on every push.</li>
+      <li><strong>Environment management</strong> — You can set environment variables securely through the Render dashboard or CLI.</li>
+      <li><strong>Free tier with scaling options</strong> — Render offers free static sites and free web services with limitations that can be upgraded when your project grows.</li>
+    </ol>
+
+    <h4>Deploying on Render</h4>
+    <ol>
+      <li>Sign up on Render and connect your Git repository.</li>
+      <li>Click <strong>New</strong> and choose <strong>Static Site</strong> if your project is purely frontend, or <strong>Web Service</strong> if it includes backend code.</li>
+      <li>Provide the repository, branch name, and build command appropriate for your project.</li>
+      <li>Set the publish directory or start command depending on the service type.</li>
+      <li>Click <strong>Create Static Site</strong> or <strong>Create Web Service</strong>.</li>
+      <li>Render will build and deploy your project, then provide a live URL.</li>
+    </ol>
+    <p>For advanced users, Render also offers an infrastructure-as-code approach through its <code>render.yaml</code> blueprint file, which allows you to define services declaratively.</p>
+
+    <h4>How Render Stacks Up Against Other Hosting Services</h4>
+    <p>Render provides more backend flexibility than GitHub Pages, Vercel, Netlify, or Surge because it supports running persistent servers and databases. It sits between traditional IaaS providers and Jamstack hosts, making it a good choice when you need both frontend hosting and lightweight backend services in one place. For static-only projects, its feature set is comparable to Netlify, but with a simpler dashboard and predictable pricing.</p>
+
+    <h2>Summary and Final Thoughts</h2>
+    <p>Choosing the right free hosting platform depends on your project type, expected traffic, and need for backend features. GitHub Pages is unbeatable for simple static documentation and portfolios. Vercel and Netlify are better for modern framework-based applications that need preview deployments and serverless functions. Surge.sh offers the fastest CLI workflow for tiny static projects. Render is the most versatile when you need both frontend and backend hosting together.</p>
+    <p><strong>Dive Deeper</strong> — Explore each platform's official documentation to learn about custom domains, environment variables, edge caching, and serverless function limits. Consider deploying the same project to multiple platforms to compare build times, caching behavior, and global performance firsthand.</p>
+    <p>Mastering free hosting tools gives you the freedom to publish projects quickly, iterate confidently, and scale when necessary without being locked into expensive infrastructure.</p>
+
     <div class="next-lab">
-      <strong>Previous Lab:</strong> <a href="/lab_02/">Lab 02 — The Ultimate Guide to Writing a Good Commit Message</a>
+      <strong>Next Lab:</strong> Ready to level up? Continue to <a href="/lab_04/">Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</a>
     </div>
   </main>
 </body>
