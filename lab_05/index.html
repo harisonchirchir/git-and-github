@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 05 — Everyday Git</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
+  <main class="container">
+    <h1>Everyday Git: Inspecting Changes and Working with Remotes</h1>
+    <p class="lead">Learn the everyday commands for inspecting your work, reading project history, and synchronizing local and remote branches safely.</p>
+
+    <h2>Step 1: Understand the three local states</h2>
+    <p>Git work happens across three local states: the <strong>working tree</strong> contains the files you edit, the <strong>staging area</strong> contains selected changes for the next commit, and the <strong>repository history</strong> contains recorded commits.</p>
+    <pre><code>git status
+git status --short</code></pre>
+    <p>Use <code>git status</code> often. In short status, <code>??</code> means untracked, <code> M</code> means modified but unstaged, and <code>M </code> means staged. The first column describes the staging area; the second describes the working tree.</p>
+
+    <h2>Step 2: Review changes before staging and committing</h2>
+    <pre><code>git diff                 # Unstaged changes
+git diff --staged        # Staged changes
+git diff -- README.md    # Changes in one file</code></pre>
+    <p>Stage only the files or hunks that belong in your commit:</p>
+    <pre><code>git add README.md
+git add -p               # Interactively choose change hunks
+git diff --staged
+git commit -m "Document remote workflow"</code></pre>
+    <p><code>git add .</code> is convenient, but check status first so generated files, credentials, or unrelated edits do not enter the commit.</p>
+
+    <h2>Step 3: Read and search project history</h2>
+    <pre><code>git log --oneline --graph --decorate --all
+git show &lt;commit&gt;
+git log --oneline -- README.md
+git log -S"search text" --oneline</code></pre>
+    <p><code>git log</code> shows commits, <code>git show</code> displays a commit and its changes, and path-limited or <code>-S</code> searches help locate when a file or text changed. Use <code>git diff &lt;base&gt;..&lt;target&gt;</code> to compare commits or branches.</p>
+
+    <h2>Step 4: Connect local and remote repositories</h2>
+    <p>A <strong>remote</strong> is a named URL for another copy of the repository. <code>origin</code> is conventional, not a special Git keyword.</p>
+    <pre><code>git remote -v
+git remote add origin https://github.com/USERNAME/REPOSITORY.git
+git remote show origin</code></pre>
+    <p><code>git clone &lt;url&gt;</code> creates a local copy and configures its remote. In a fork-based project, <code>origin</code> commonly points to your fork and <code>upstream</code> to the original repository:</p>
+    <pre><code>git remote add upstream https://github.com/OWNER/REPOSITORY.git
+git fetch upstream</code></pre>
+
+    <h2>Step 5: Fetch, pull, and push</h2>
+    <p><code>git fetch</code> downloads remote commits and updates references such as <code>origin/main</code> without changing your current branch or files. Review and integrate changes explicitly:</p>
+    <pre><code>git fetch origin
+git log --oneline HEAD..origin/main
+git diff HEAD..origin/main
+git merge origin/main</code></pre>
+    <p><code>git pull</code> fetches and integrates in one command. Its integration strategy may be merge or rebase depending on configuration; agree on a team policy. For an explicit rebase of your current private feature branch:</p>
+    <pre><code>git pull --rebase origin main</code></pre>
+    <p>Publish a branch with an upstream link for convenient future synchronization:</p>
+    <pre><code>git push -u origin &lt;branch-name&gt;
+git push</code></pre>
+    <p>If a push is rejected because the remote has new commits, fetch and integrate them before retrying. Do not force-push shared history.</p>
+
+    <h2>Step 6: Practice the daily loop</h2>
+    <ol>
+      <li>Check status and the current branch, then fetch and review remote commits.</li>
+      <li>Create or switch to a short-lived feature branch.</li>
+      <li>Make a focused change; inspect with <code>git diff</code>.</li>
+      <li>Stage intended files or hunks; review with <code>git diff --staged</code>.</li>
+      <li>Commit clearly, push the branch, and open a pull request.</li>
+    </ol>
+    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_06/">Lab 06 — Undoing Changes and Recovering Work</a></div>
+  </main>
+</body>
+</html>

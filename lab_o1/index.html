@@ -121,10 +121,9 @@ dir   # Windows</code></pre>
     <pre><code class="language-bash">git commit -m "Add README.md file with sample content"</code></pre>
 
     <h4>Pushing Changes to GitHub</h4>
-    <p>Finally, to upload your local repository changes to GitHub, execute the <code>git push</code> command. Assuming you're working on the master or main branch, you would run the following command:</p>
-    <pre><code class="language-bash">git push origin master
-git push origin main</code></pre>
-    <p>By following these steps, you have successfully set up a GitHub repository and started tracking changes to your code.</p>
+    <p>Finally, upload your local branch to GitHub. Replace <code>&lt;branch-name&gt;</code> with the branch you are currently working on (for example, <code>main</code>). The <code>-u</code> option sets the upstream so later pushes can use <code>git push</code>:</p>
+    <pre><code class="language-bash">git push -u origin &lt;branch-name&gt;</code></pre>
+    <p>Do not run both <code>master</code> and <code>main</code> commands; push the branch that exists in your repository.</p>
 
     <h3>Step 7: Branching Out: Working with Branches in Git</h3>
     <p>Branching is a powerful feature of Git that allows you to work on different features or bug fixes without affecting the main codebase. This approach enables a parallel development workflow, making it easier to manage changes and collaborate with other developers.</p>

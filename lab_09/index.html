@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 09 — Git Tags and Releases</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
+  <main class="container">
+    <h1>Git Tags, Versioning, and GitHub Releases</h1>
+    <p class="lead">Commits record development history; tags give important commits stable names, often for versions. GitHub Releases use tags to publish release notes and downloadable files.</p>
+
+    <h2>Step 1: Understand tags</h2>
+    <p>A <strong>lightweight tag</strong> is a name pointing to a commit. An <strong>annotated tag</strong> stores metadata such as tagger, date, and message; it is generally preferred for releases.</p>
+    <pre><code>git tag
+git tag -a v1.0.0 -m "Release 1.0.0"
+git show v1.0.0
+git tag -a v0.9.0 &lt;commit&gt; -m "Release 0.9.0"</code></pre>
+    <p>Tags are not automatically included when pushing an individual branch. Push one tag or all local tags explicitly:</p>
+    <pre><code>git push origin v1.0.0
+git push origin --tags</code></pre>
+    <p>Avoid moving or reusing published release tags. Teammates and automation may depend on each tag identifying the same commit.</p>
+
+    <h2>Step 2: Apply semantic versioning</h2>
+    <p>Semantic Versioning uses <code>MAJOR.MINOR.PATCH</code>:</p>
+    <ul>
+      <li><strong>MAJOR:</strong> incompatible public changes.</li>
+      <li><strong>MINOR:</strong> backward-compatible functionality.</li>
+      <li><strong>PATCH:</strong> backward-compatible fixes.</li>
+    </ul>
+    <p><code>v2.4.1</code> is the first patch after <code>2.4.0</code>. Pre-release identifiers such as <code>v2.5.0-rc.1</code> indicate a release candidate. Document what counts as a breaking change for your project.</p>
+
+    <h2>Step 3: Prepare and publish a release</h2>
+    <ol>
+      <li>Ensure intended code is merged into the release branch and checks pass.</li>
+      <li>Review changes since the prior release with <code>git log --oneline v1.0.0..HEAD</code>.</li>
+      <li>Update version metadata and changelog if used; commit those updates.</li>
+      <li>Create an annotated tag on the intended release commit and push it.</li>
+      <li>Create a GitHub Release for that tag. Summarize user-facing changes, breaking changes, and migration steps; attach artifacts only when needed.</li>
+    </ol>
+    <pre><code>git log --oneline v1.0.0..HEAD
+git tag -a v1.1.0 -m "Release 1.1.0"
+git push origin v1.1.0</code></pre>
+    <p>GitHub can generate release notes from merged PRs and related issues when repository settings and metadata support it. Review generated notes before publishing.</p>
+
+    <h2>Step 4: Inspect and correct tags carefully</h2>
+    <pre><code>git tag --list "v1.*"
+git show --no-patch v1.1.0
+git ls-remote --tags origin</code></pre>
+    <p>If a tag was created incorrectly and has not been shared, delete and recreate it locally:</p>
+    <pre><code>git tag -d v1.1.0
+git tag -a v1.1.0 &lt;correct-commit&gt; -m "Release 1.1.0"</code></pre>
+    <p>If already pushed, coordinate with maintainers before changing it. Replacing a published release tag can make local references and artifacts disagree.</p>
+
+    <h2>Practice</h2>
+    <ol>
+      <li>Inspect history and identify a commit suitable for a practice release.</li>
+      <li>Create an annotated pre-release tag and inspect it with <code>git show</code>.</li>
+      <li>Push the tag to a test repository and create a GitHub Release with concise notes.</li>
+      <li>Explain why a release tag should not be silently moved.</li>
+    </ol>
+    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 08 — GitHub Actions</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
+  <main class="container">
+    <h1>Automating Workflows with GitHub Actions</h1>
+    <p class="lead">GitHub Actions runs automation on repository events. Use continuous integration to check proposed changes and continuous delivery or deployment to publish approved changes. Workflow YAML files live in <code>.github/workflows/</code>.</p>
+
+    <h2>Step 1: Understand the workflow model</h2>
+    <ul>
+      <li>A <strong>workflow</strong> is an automation definition.</li>
+      <li>An <strong>event</strong> starts it: push, pull request, schedule, or manual dispatch.</li>
+      <li>A <strong>job</strong> groups steps and runs on a runner.</li>
+      <li>A <strong>step</strong> runs a shell command or reusable action.</li>
+      <li><strong>Artifacts</strong> store or pass build outputs.</li>
+    </ul>
+    <p>Workflows can use GitHub-hosted or self-hosted runners. Treat self-hosted runners carefully because untrusted code may execute on them.</p>
+
+    <h2>Step 2: Add a basic CI workflow</h2>
+    <p>For static HTML and Python link-check code, create <code>.github/workflows/ci.yml</code>:</p>
+    <pre><code>name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check internal links
+        run: python3 scripts/check_links.py</code></pre>
+    <p>On PRs, this creates a status check that branch protection can require. Application repositories should add their test, lint, and build commands. Actions are dependencies: pin to a reviewed release or immutable SHA according to policy and keep them updated. Version tags are readable examples, not immutable pins.</p>
+
+    <h2>Step 3: Use secrets and permissions safely</h2>
+    <p>Keep sensitive values in GitHub Actions secrets or environment secrets, never in workflow files or source. Expose a secret only to the step that needs it:</p>
+    <pre><code>      - name: Publish
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+        run: ./scripts/publish.sh</code></pre>
+    <p>Never print secret values. Workflows from forks generally do not receive repository secrets. Avoid privileged <code>pull_request_target</code> workflows that check out and execute untrusted PR code.</p>
+    <p>Use the narrowest permissions required. Start with <code>contents: read</code> and grant write access only to jobs that need it. Prefer scoped credentials and review third-party actions before use.</p>
+
+    <h2>Step 4: Add a deployment workflow</h2>
+    <p>This repository already includes <code>.github/workflows/static.yml</code>, which deploys the static site to GitHub Pages on pushes to <code>main</code> and supports manual dispatch. Pages deployment needs <code>pages: write</code> and <code>id-token: write</code>; the CI example uses read-only permissions.</p>
+    <p>Configure <strong>Settings → Pages</strong> to use GitHub Actions. Review workflow logs and deployment environments when a run fails. For production, consider environment protection rules and approvals.</p>
+
+    <h2>Step 5: Debug and improve workflows</h2>
+    <ol>
+      <li>Open the Actions tab, select the failed run, and inspect job and step logs.</li>
+      <li>Reproduce the command locally where possible.</li>
+      <li>Check event filters, YAML indentation, permissions, secrets availability, and runner environment.</li>
+      <li>Re-run after understanding the failure; do not expose secrets while debugging.</li>
+      <li>Use caching when it measurably helps, and configure concurrency to prevent duplicate deployments.</li>
+    </ol>
+
+    <h2>Practice</h2>
+    <ol>
+      <li>Add CI that runs the link checker on pushes and pull requests.</li>
+      <li>Open a PR and confirm the check appears in its status.</li>
+      <li>Cause a broken link in a local branch, observe the failed check, then fix it.</li>
+      <li>Explain why a Pages deployment needs more permissions than a read-only check.</li>
+    </ol>
+    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_09/">Lab 09 — Git Tags, Versioning, and GitHub Releases</a></div>
+  </main>
+</body>
+</html>

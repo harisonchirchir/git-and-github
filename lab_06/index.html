@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 06 — Undoing Changes and Recovering Work</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
+  <main class="container">
+    <h1>Undoing Changes and Recovering Work</h1>
+    <p class="lead">Choose the right recovery command based on whether a change is uncommitted, staged, committed locally, or already shared. Inspect first: some undo operations are destructive.</p>
+
+    <h2>Step 1: Inspect before undoing</h2>
+    <pre><code>git status
+git diff
+git diff --staged
+git log --oneline --decorate -5</code></pre>
+    <p>If work might matter, save a copy or create a temporary branch before a risky recovery. Avoid destructive commands if you are unsure which files or commits they affect.</p>
+
+    <h2>Step 2: Discard or unstage uncommitted changes</h2>
+    <p>Discard working-tree edits to a tracked file:</p>
+    <pre><code>git restore &lt;file&gt;</code></pre>
+    <p>This replaces the file with its staged version, or with <code>HEAD</code> if nothing is staged. Discarded edits are not normally recoverable; inspect or back them up first.</p>
+    <p>Unstage a file while keeping its edits, or unstage all files:</p>
+    <pre><code>git restore --staged &lt;file&gt;
+git restore --staged .</code></pre>
+    <p>Untracked files are not removed by <code>git restore</code>; review status and delete them intentionally if needed.</p>
+
+    <h2>Step 3: Undo a commit safely</h2>
+    <p><code>git revert</code> creates a new commit that reverses an earlier commit. It is usually the safe choice for commits already shared with others:</p>
+    <pre><code>git revert &lt;commit&gt;
+git push</code></pre>
+    <p>For a merge commit, Git may require a mainline parent, for example <code>git revert -m 1 &lt;merge-commit&gt;</code>. Confirm which parent represents the history to keep.</p>
+
+    <h2>Step 4: Understand reset</h2>
+    <pre><code>git reset --soft HEAD~1   # Undo last commit; keep changes staged
+git reset --mixed HEAD~1  # Undo last commit; keep changes unstaged
+git reset --hard HEAD~1   # Discard commit and working-tree changes</code></pre>
+    <p>Use <code>--soft</code> or <code>--mixed</code> only to rewrite commits that have not been shared. <code>--hard</code> is destructive. Do not reset published history unless the team explicitly coordinates a history rewrite.</p>
+    <p><strong>Rule of thumb:</strong> use <code>restore</code> for file-level uncommitted edits, <code>revert</code> to undo published commits, and <code>reset</code> to reorganize private local history.</p>
+
+    <h2>Step 5: Temporarily set aside work with stash</h2>
+    <pre><code>git stash push -m "WIP: profile form"
+git stash push -u -m "Include new files"
+git stash list
+git stash show -p stash@{0}
+git stash apply stash@{0}
+git stash drop stash@{0}</code></pre>
+    <p><code>apply</code> keeps the stash entry; <code>pop</code> applies it and removes the entry if successful. Stash is temporary storage, not a long-term backup—commit important work.</p>
+
+    <h2>Step 6: Recover a lost commit with reflog</h2>
+    <pre><code>git reflog
+git show &lt;commit&gt;
+git branch recovery &lt;commit&gt;</code></pre>
+    <p>Find and inspect the commit in the local reflog, then create a recovery branch before restoring work. Reflog entries expire over time and are not a substitute for backups.</p>
+
+    <h2>Practice: choose the right recovery</h2>
+    <ol>
+      <li>Edit a file and discard one unwanted edit with <code>git restore</code>.</li>
+      <li>Stage a file, then unstage it while preserving the edit.</li>
+      <li>Make a local commit and undo it with <code>git reset --soft HEAD~1</code>.</li>
+      <li>Push a test commit and reverse it with <code>git revert</code>.</li>
+      <li>Stash an edit, switch branches, and restore the stash.</li>
+      <li>Inspect <code>git reflog</code> and explain how a recovery branch protects a dangling commit.</li>
+    </ol>
+    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_07/">Lab 07 — GitHub Collaboration</a></div>
+  </main>
+</body>
+</html>

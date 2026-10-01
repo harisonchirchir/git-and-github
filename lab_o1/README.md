@@ -178,14 +178,13 @@ git commit -m "Add README.md file with sample content"
 
 #### Pushing Changes to GitHub
 
-Finally, to upload your local repository changes to GitHub, execute the `git push` command. Assuming you're working on the master or main branch, you would run the following command:
+Finally, upload your local branch to GitHub. Replace `<branch-name>` with the branch you are currently working on (for example, `main`). The `-u` option sets the upstream so later pushes can use `git push`:
 
 ~~~bash
-git push origin master
-git push origin main
+git push -u origin <branch-name>
 ~~~
 
-By following these steps, you have successfully set up a GitHub repository and started tracking changes to your code.
+Do not run both `master` and `main` commands; push the branch that exists in your repository.
 
 ### Step 7: Branching Out: Working with Branches in Git
 

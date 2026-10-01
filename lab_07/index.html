@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 07 — GitHub Collaboration</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
+  <main class="container">
+    <h1>GitHub Collaboration: Issues, Pull Requests, and Reviews</h1>
+    <p class="lead">Git provides version control; GitHub adds tools for planning, discussing, reviewing, and governing changes. Follow work from an issue through a reviewed pull request.</p>
+
+    <h2>Step 1: Track work with Issues</h2>
+    <p>Use a GitHub Issue to describe a bug, feature, question, or task. A useful issue has a clear title, context, steps to reproduce (for a bug), expected behavior, and acceptance criteria. Labels categorize work; milestones group issues and pull requests toward a target.</p>
+    <p>Reference an issue in a branch or PR. In the PR description, keywords such as <code>Closes #42</code> link and close the issue when the PR is merged into the default branch. GitHub Projects can organize issues and PRs in a table, board, or roadmap view; use the issue for the durable work description.</p>
+
+    <h2>Step 2: Open a focused pull request</h2>
+    <ol>
+      <li>Create a branch for one change and commit small, understandable updates.</li>
+      <li>Push the branch and open a PR against the intended base branch.</li>
+      <li>Explain what changed, why, how it was tested, and any risks. Link related issues.</li>
+      <li>Keep the PR in draft while in progress; request review when ready.</li>
+      <li>Keep discussion and follow-up commits on the same branch.</li>
+    </ol>
+    <p>A <strong>draft PR</strong> invites early feedback without signaling that a change is ready to merge. A <strong>review request</strong> asks specific teammates to examine the change.</p>
+
+    <h2>Step 3: Review and merge responsibly</h2>
+    <p>Reviewers should examine the diff, check behavior and tests, ask specific questions, and approve only when the change meets repository standards. Authors should respond constructively and resolve conversations once addressed.</p>
+    <ul>
+      <li><strong>Merge commit:</strong> preserves branch commits and adds a merge commit.</li>
+      <li><strong>Squash and merge:</strong> combines PR commits into one commit on the base branch.</li>
+      <li><strong>Rebase and merge:</strong> replays PR commits onto the base branch without a merge commit.</li>
+    </ul>
+    <p>The repository chooses which methods are allowed. Agree on a team policy. Delete a merged feature branch when it is no longer needed; the commits remain in merged history.</p>
+
+    <h2>Step 4: Protect the default branch</h2>
+    <p>Branch protection or repository rulesets can require PRs, approvals, status checks, resolved conversations, or signed commits. They can also restrict force pushes and deletion. Require checks that meaningfully protect quality and document who can bypass rules in emergencies. Settings can vary by repository visibility and plan.</p>
+
+    <h2>Step 5: Contribute through a fork</h2>
+    <p>When you do not have write access, fork the repository, clone your fork, and add the original as <code>upstream</code>:</p>
+    <pre><code>git clone https://github.com/YOUR-USER/PROJECT.git
+cd PROJECT
+git remote add upstream https://github.com/OWNER/PROJECT.git
+git switch -c fix/issue-42</code></pre>
+    <p>Push your branch to <code>origin</code> (your fork) and open a PR from that branch to the original repository. Update your local default branch with the original's changes:</p>
+    <pre><code>git fetch upstream
+git switch main
+git merge upstream/main
+git push origin main</code></pre>
+    <p>Check the repository contribution guide and code of conduct before contributing.</p>
+
+    <h2>Practice: complete a PR lifecycle</h2>
+    <ol>
+      <li>Create an issue with a goal and acceptance criteria.</li>
+      <li>Create a feature branch named for the issue and implement the change.</li>
+      <li>Open a draft PR, describe the change and testing, and link the issue.</li>
+      <li>Ask a peer to review; respond to comments and update the branch.</li>
+      <li>Check required status checks and merge method; merge only when requirements pass.</li>
+    </ol>
+    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_08/">Lab 08 — Automating Workflows with GitHub Actions</a></div>
+  </main>
+</body>
+</html>

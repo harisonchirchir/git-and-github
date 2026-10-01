@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 10 — Advanced Git Tools</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
+  <main class="container">
+    <h1>Advanced Git Tools and Repository Management</h1>
+    <p class="lead">Explore tools for applying individual commits, finding regressions, examining line history, using multiple worktrees, and managing dependencies or large binary assets.</p>
+
+    <h2>Step 1: Apply one commit with cherry-pick</h2>
+    <p><code>git cherry-pick</code> applies an existing commit's changes to the current branch and creates a new commit. It is useful for backporting a focused fix:</p>
+    <pre><code>git switch release-branch
+git cherry-pick &lt;commit&gt;</code></pre>
+    <p>The new commit ID differs because its parent differs. If conflicts occur, resolve and stage the files, then use <code>git cherry-pick --continue</code>; cancel with <code>git cherry-pick --abort</code>. Avoid broadly cherry-picking where a merge is more appropriate.</p>
+
+    <h2>Step 2: Find a regression with bisect</h2>
+    <p><code>git bisect</code> binary-searches history for the commit that introduced a problem. Mark a known-bad and known-good revision:</p>
+    <pre><code>git bisect start
+git bisect bad
+git bisect good &lt;known-good-commit&gt;</code></pre>
+    <p>Test each checked-out revision and mark it with <code>git bisect good</code> or <code>git bisect bad</code>. When Git identifies the first bad commit, inspect it and end the session:</p>
+    <pre><code>git bisect reset</code></pre>
+    <p>Automate with <code>git bisect run &lt;test-command&gt;</code> when the test returns zero for good and nonzero for bad. Ensure the test works reliably across older revisions.</p>
+
+    <h2>Step 3: Investigate file history with blame</h2>
+    <pre><code>git blame -L 20,40 path/to/file
+git show &lt;commit&gt;</code></pre>
+    <p><code>git blame</code> shows the commit and author associated with each line. Use it to find context, not to assign fault; read the commit, PR, and related discussion.</p>
+
+    <h2>Step 4: Work on multiple branches with worktrees</h2>
+    <p>A worktree checks out another branch into a separate directory while sharing repository data:</p>
+    <pre><code>git worktree add ../project-hotfix hotfix/urgent-fix
+git worktree list
+git worktree remove ../project-hotfix</code></pre>
+    <p>A branch generally cannot be checked out in two worktrees at once. Save or commit work before removing a worktree.</p>
+
+    <h2>Step 5: Know when submodules are appropriate</h2>
+    <p>Submodules record a specific commit from another repository. They preserve independent versioning but add setup and collaboration steps:</p>
+    <pre><code>git submodule add https://github.com/OWNER/DEPENDENCY.git vendor/dependency
+git clone --recurse-submodules &lt;repository-url&gt;
+git submodule update --init --recursive</code></pre>
+    <p>The parent stores a pointer to a submodule commit, not its complete history. Contributors need access to the submodule repository and commit changes there before updating the pointer in the parent.</p>
+
+    <h2>Step 6: Use Git LFS for large files</h2>
+    <p>Frequently changing binaries can make Git history grow quickly. Git LFS puts small pointer files in Git and stores actual content through an LFS server; hosting providers may impose storage and bandwidth quotas.</p>
+    <pre><code>git lfs install
+git lfs track "*.psd"
+git add .gitattributes
+git add design.psd
+git commit -m "Track design assets with Git LFS"</code></pre>
+    <p>Commit <code>.gitattributes</code> so contributors know which patterns use LFS. It does not automatically shrink binaries already committed; history migration is disruptive and requires coordination.</p>
+
+    <h2>Choosing the right tool</h2>
+    <ul>
+      <li><strong>Cherry-pick:</strong> a small, specific commit on another branch.</li>
+      <li><strong>Bisect:</strong> locate a regression with known good/bad revisions and a reliable test.</li>
+      <li><strong>Blame:</strong> find a line's history, then investigate its context.</li>
+      <li><strong>Worktrees:</strong> simultaneous checkouts in separate directories.</li>
+      <li><strong>Submodules:</strong> independently versioned repositories with clear ownership.</li>
+      <li><strong>Git LFS:</strong> large binary assets, after reviewing quotas and team setup.</li>
+    </ul>
+
+    <h2>Practice</h2>
+    <ol>
+      <li>Cherry-pick a test commit onto a temporary branch and inspect it.</li>
+      <li>Run <code>git bisect</code> on a small example with a known regression.</li>
+      <li>Use blame to locate a change, then read its full commit context.</li>
+      <li>Create and remove a temporary worktree.</li>
+      <li>Explain how submodule pointers and LFS pointer files differ from ordinary files.</li>
+    </ol>
+    <div class="next-lab"><strong>All labs:</strong> Return to the <a href="../">Mastering Git and GitHub home page</a></div>
+  </main>
+</body>
+</html>
