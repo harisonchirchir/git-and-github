@@ -231,4 +231,4 @@ Mastering workflows and conflicts is what separates Git beginners from Git profe
 
 ---
 
-**Next Lab:** Ready to level up? Continue to [Lab 05](../lab_05/)
+**All labs:** Return to the [Mastering Git and GitHub home page](../).

@@ -6,20 +6,19 @@ A structured, hands-on learning journey covering Git fundamentals, commit best p
 
 - `lab_o1/` — Introduction to Git and GitHub: installation, initialization, branching, and first push.
 - `lab_02/` — The Ultimate Guide to Writing a Good Commit Message: commit anatomy, conventional commits, linting, and history hygiene.
-- `lab_03/` — Upcoming lab.
-- `30-day-git-challenge/` — Practice exercises and challenges.
+- `lab_03/` — Free Hosting For Web Projects: GitHub Pages, Vercel, Netlify, Surge, and Render.
+- `lab_04/` — Mastering Git Workflows and Merge Conflict Resolution.
+- `30-day-git-challenge/` — Challenge topics are outlined; hands-on exercises are coming soon.
 
 ## Usage
 
-You can read through the labs in order. Each `README.md` is self-contained and includes a link to the next lab at the bottom.
+Open `index.html` locally or visit the deployed site, then follow the labs in order. Each lab has a standalone `index.html` page and a `README.md` with the lesson text.
 
 ## Deploying as GitHub Pages
 
-This project is set up for GitHub Pages. After pushing to GitHub:
+This project deploys as a static site to GitHub Pages through the workflow in `.github/workflows/static.yml`. It runs on pushes to `main` and can also be started manually from the Actions tab. No build step or package installation is required.
 
-1. Open **Settings → Pages**
-2. Set **Source** to the `main` branch
-3. Your tutorial site will be published at `https://<your-username>.github.io/<repo-name>/`
+In **Settings → Pages**, select **GitHub Actions** as the build and deployment source. The workflow publishes the site at `https://<your-username>.github.io/<repo-name>/`. Page and asset links are relative so they work under this repository path.
 
 ## License
 
