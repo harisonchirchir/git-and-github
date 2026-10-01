@@ -231,4 +231,4 @@ Mastering workflows and conflicts is what separates Git beginners from Git profe
 
 ---
 
-**All labs:** Return to the [Mastering Git and GitHub home page](../).
+**Next Lab:** Continue to [Lab 05 — Everyday Git: Inspecting Changes and Working with Remotes](../lab_05/).
