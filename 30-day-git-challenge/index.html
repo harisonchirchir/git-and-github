@@ -12,8 +12,371 @@
   </nav>
   <main class="container">
     <h1>30-Day Git Challenge</h1>
-    <p class="lead">Practice exercises and challenges to strengthen your Git and GitHub skills through hands-on daily tasks.</p>
-    <p>Coming soon — exercises will be added here.</p>
+    <p class="lead">Practice Git and GitHub step by step with daily exercises that build confidence through repetition, review, and hands-on problem solving.</p>
+
+    <h2>How to use this challenge</h2>
+    <ol>
+      <li>Pick one day at a time and work in your own practice repository.</li>
+      <li>Use the commands in each step before checking the solution reference.</li>
+      <li>Keep your notes in a file such as <code>notes.md</code> or in commit messages.</li>
+      <li>Repeat the challenge on a second project to reinforce the workflow.</li>
+    </ol>
+
+    <h2>Day-by-day guide</h2>
+
+    <h3>Day 1 — Install and configure Git</h3>
+    <p><strong>Goal:</strong> Set up your local Git environment.</p>
+    <ol>
+      <li>Install Git from <a href="https://git-scm.com/" target="_blank">git-scm.com</a>.</li>
+      <li>Verify installation with <code>git --version</code>.</li>
+      <li>Set your name and email:</li>
+    </ol>
+    <pre><code class="language-bash">git --version
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_o1/">Lab 01 — Introduction to Git and GitHub</a></p>
+
+    <h3>Day 2 — Create your first repository</h3>
+    <p><strong>Goal:</strong> Learn how Git repositories are initialized.</p>
+    <ol>
+      <li>Create a new folder for a practice project.</li>
+      <li>Open the terminal and run <code>git init</code>.</li>
+      <li>Check that the <code>.git</code> folder exists.</li>
+    </ol>
+    <pre><code class="language-bash">mkdir git-practice
+cd git-practice
+git init
+ls -la</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_o1/">Lab 01 — Introduction to Git and GitHub</a></p>
+
+    <h3>Day 3 — Track your first changes</h3>
+    <p><strong>Goal:</strong> Understand status, add, and commit.</p>
+    <ol>
+      <li>Create a small <code>README.md</code>.</li>
+      <li>Run <code>git status</code>.</li>
+      <li>Stage changes with <code>git add</code>.</li>
+      <li>Commit with a clear message.</li>
+    </ol>
+    <pre><code class="language-bash">git status
+git add README.md
+git commit -m "Add README for project setup"</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_o1/">Lab 01 — Introduction to Git and GitHub</a></p>
+
+    <h3>Day 4 — Write a good commit message</h3>
+    <p><strong>Goal:</strong> Practice clear and professional commit wording.</p>
+    <ol>
+      <li>Make 2–3 small changes.</li>
+      <li>Write a short subject with a clear action.</li>
+      <li>Describe the reason for the update in the body.</li>
+    </ol>
+    <pre><code class="language-bash">git commit -m "feat: add landing page"
+# or
+git commit -m "fix: correct login validation error"</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_02/">Lab 02 — The Ultimate Guide to Writing a Good Commit Message</a></p>
+
+    <h3>Day 5 — Use <code>.gitignore</code></h3>
+    <p><strong>Goal:</strong> Prevent files like env secrets and dependencies from being tracked.</p>
+    <ol>
+      <li>Create a <code>.gitignore</code> file.</li>
+      <li>Add entries such as <code>node_modules/</code>, <code>.env</code>, and <code>.DS_Store</code>.</li>
+      <li>Commit the file.</li>
+    </ol>
+    <pre><code class="language-bash">touch .gitignore
+printf "node_modules/\n.env\n.DS_Store\n" >> .gitignore
+git add .gitignore
+git commit -m "Add project ignore rules"</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></p>
+
+    <h3>Day 6 — Inspect Git history</h3>
+    <p><strong>Goal:</strong> Understand commit logs and project history.</p>
+    <ol>
+      <li>Run <code>git log</code>.</li>
+      <li>Use <code>--oneline</code> to keep output concise.</li>
+      <li>Review authors, dates, and messages.</li>
+    </ol>
+    <pre><code class="language-bash">git log --oneline --decorate --graph --all
+git log --oneline -n 5</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_05/">Lab 05 — Everyday Git</a></p>
+
+    <h3>Day 7 — Undo small mistakes</h3>
+    <p><strong>Goal:</strong> Restore files safely without losing everything.</p>
+    <ol>
+      <li>Edit a file and save it.</li>
+      <li>Run <code>git restore</code> to discard the changes.</li>
+      <li>Practice <code>git revert</code> for a recent commit.</li>
+    </ol>
+    <pre><code class="language-bash">git restore README.md
+git revert HEAD</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_06/">Lab 06 — Undoing and Recovering</a></p>
+
+    <h3>Day 8 — Reset vs revert</h3>
+    <p><strong>Goal:</strong> Understand the difference between removing a commit and undoing it.</p>
+    <ol>
+      <li>Create a bad or unnecessary commit.</li>
+      <li>Practice <code>git reset --soft HEAD~1</code>.</li>
+      <li>Compare the result with <code>git revert HEAD</code>.</li>
+    </ol>
+    <pre><code class="language-bash">git reset --soft HEAD~1
+git revert HEAD</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_06/">Lab 06 — Undoing and Recovering</a></p>
+
+    <h3>Day 9 — Branching basics</h3>
+    <p><strong>Goal:</strong> Work on feature changes without disturbing the main branch.</p>
+    <ol>
+      <li>Create a new branch.</li>
+      <li>Commit changes there.</li>
+      <li>Return to the main branch.</li>
+    </ol>
+    <pre><code class="language-bash">git checkout -b feature/login-page
+git checkout main</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_04/">Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</a></p>
+
+    <h3>Day 10 — Merge a branch</h3>
+    <p><strong>Goal:</strong> Bring feature work into the main line of development.</p>
+    <ol>
+      <li>Merge a feature branch into <code>main</code>.</li>
+      <li>Review the commit history.</li>
+      <li>Confirm the merge is clean.</li>
+    </ol>
+    <pre><code class="language-bash">git checkout main
+git merge feature/login-page</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_04/">Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</a></p>
+
+    <h3>Day 11 — Resolve merge conflicts</h3>
+    <p><strong>Goal:</strong> Fix conflicts manually and finish the merge cleanly.</p>
+    <ol>
+      <li>Create conflicting edits on the same file.</li>
+      <li>Open the conflict markers.</li>
+      <li>Resolve the conflict and commit the result.</li>
+    </ol>
+    <pre><code class="language-bash">git status
+git add resolved-file
+git commit -m "Resolve merge conflict"</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_04/">Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</a></p>
+
+    <h3>Day 12 — Use Git stash</h3>
+    <p><strong>Goal:</strong> Save work temporarily while switching tasks.</p>
+    <ol>
+      <li>Make changes that are not ready to commit.</li>
+      <li>Run <code>git stash</code>.</li>
+      <li>Switch branches or continue your work.</li>
+      <li>Restore with <code>git stash pop</code>.</li>
+    </ol>
+    <pre><code class="language-bash">git stash
+git stash list
+git stash pop</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_06/">Lab 06 — Undoing and Recovering</a></p>
+
+    <h3>Day 13 — Create and push a GitHub repo</h3>
+    <p><strong>Goal:</strong> Connect your local project to GitHub.</p>
+    <ol>
+      <li>Create a repository on GitHub.</li>
+      <li>Add the remote URL.</li>
+      <li>Push the branch with <code>git push -u origin main</code>.</li>
+    </ol>
+    <pre><code class="language-bash">git remote add origin git@github.com:YOUR-USER/YOUR-REPO.git
+git push -u origin main</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_o1/">Lab 01 — Introduction to Git and GitHub</a></p>
+
+    <h3>Day 14 — Clone and inspect a remote repo</h3>
+    <p><strong>Goal:</strong> Learn how to work with existing repositories.</p>
+    <ol>
+      <li>Clone a public repository.</li>
+      <li>Check the remote URL and branches.</li>
+      <li>Pull the latest changes.</li>
+    </ol>
+    <pre><code class="language-bash">git clone https://github.com/owner/repo.git
+cd repo
+git remote -v
+git pull origin main</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_05/">Lab 05 — Everyday Git</a></p>
+
+    <h3>Day 15 — Fork a repo</h3>
+    <p><strong>Goal:</strong> Practice the contribution workflow used in open source.</p>
+    <ol>
+      <li>Fork a repository on GitHub.</li>
+      <li>Clone your fork locally.</li>
+      <li>Create a branch and push to your fork.</li>
+    </ol>
+    <pre><code class="language-bash">git checkout -b update-docs
+git push -u origin update-docs</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_07/">Lab 07 — GitHub Collaboration</a></p>
+
+    <h3>Day 16 — Open a pull request</h3>
+    <p><strong>Goal:</strong> Propose your changes for review.</p>
+    <ol>
+      <li>Push a feature branch to GitHub.</li>
+      <li>Open a pull request with a title and summary.</li>
+      <li>Explain what changed and why.</li>
+    </ol>
+    <pre><code class="language-bash">git push -u origin feature-branch</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_07/">Lab 07 — GitHub Collaboration</a></p>
+
+    <h3>Day 17 — Use GitHub issues</h3>
+    <p><strong>Goal:</strong> Track tasks and bugs as part of your workflow.</p>
+    <ol>
+      <li>Create an issue.</li>
+      <li>Write a clear title and description.</li>
+      <li>Assign labels or link the issue to a pull request.</li>
+    </ol>
+    <p><strong>Solution reference:</strong> <a href="../lab_07/">Lab 07 — GitHub Collaboration</a></p>
+
+    <h3>Day 18 — Create tags and releases</h3>
+    <p><strong>Goal:</strong> Mark important project milestones.</p>
+    <ol>
+      <li>Create a lightweight or annotated tag.</li>
+      <li>Push tags to GitHub.</li>
+      <li>Use a release title and notes.</li>
+    </ol>
+    <pre><code class="language-bash">git tag v1.0.0
+git tag -a v1.1.0 -m "Release 1.1.0"
+git push origin --tags</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_09/">Lab 09 — Git Tags, Versioning, and GitHub Releases</a></p>
+
+    <h3>Day 19 — Filter commit history</h3>
+    <p><strong>Goal:</strong> Search your project history more efficiently.</p>
+    <ol>
+      <li>Use <code>--grep</code> to find commit messages.</li>
+      <li>Filter by author or date.</li>
+      <li>Use <code>--stat</code> to see what changed.</li>
+    </ol>
+    <pre><code class="language-bash">git log --oneline --grep "feature"
+git log --author "Your Name" --oneline
+git log --since="2024-01-01" --oneline</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_05/">Lab 05 — Everyday Git</a></p>
+
+    <h3>Day 20 — Use <code>git blame</code></h3>
+    <p><strong>Goal:</strong> Trace who changed a line and when.</p>
+    <ol>
+      <li>Open a file with historical changes.</li>
+      <li>Run <code>git blame</code>.</li>
+      <li>Review the author and commit for each line.</li>
+    </ol>
+    <pre><code class="language-bash">git blame README.md</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></p>
+
+    <h3>Day 21 — Rebase a branch</h3>
+    <p><strong>Goal:</strong> Move your work onto the latest main branch.</p>
+    <ol>
+      <li>Create a feature branch.</li>
+      <li>Run <code>git rebase main</code>.</li>
+      <li>Resolve any conflicts and continue.</li>
+    </ol>
+    <pre><code class="language-bash">git checkout feature-branch
+git rebase main</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_04/">Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</a></p>
+
+    <h3>Day 22 — Cherry-pick a commit</h3>
+    <p><strong>Goal:</strong> Apply one specific commit to another branch.</p>
+    <ol>
+      <li>Find the commit you want to reuse.</li>
+      <li>Check out the target branch.</li>
+      <li>Use <code>git cherry-pick</code>.</li>
+    </ol>
+    <pre><code class="language-bash">git log --oneline
+git cherry-pick &lt;commit-sha&gt;</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></p>
+
+    <h3>Day 23 — Work with stashes in more detail</h3>
+    <p><strong>Goal:</strong> Temporarily save multiple changes and restore them cleanly.</p>
+    <ol>
+      <li>Modify two files.</li>
+      <li>Use a named stash with a message.</li>
+      <li>Switch branches and restore the stash.</li>
+    </ol>
+    <pre><code class="language-bash">git stash push -m "WIP: feature work"
+git stash list
+git stash pop</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_06/">Lab 06 — Undoing and Recovering</a></p>
+
+    <h3>Day 24 — Practice a clean PR flow</h3>
+    <p><strong>Goal:</strong> Make your review-ready branch easy to understand.</p>
+    <ol>
+      <li>Create a feature branch from <code>main</code>.</li>
+      <li>Keep commits focused and small.</li>
+      <li>Push and open a pull request.</li>
+    </ol>
+    <p><strong>Solution reference:</strong> <a href="../lab_07/">Lab 07 — GitHub Collaboration</a></p>
+
+    <h3>Day 25 — Use a hotfix branch</h3>
+    <p><strong>Goal:</strong> Fix a production problem without disturbing your current feature work.</p>
+    <ol>
+      <li>Create a <code>hotfix</code> branch.</li>
+      <li>Apply the bug fix.</li>
+      <li>Merge it once reviewed.</li>
+    </ol>
+    <p><strong>Solution reference:</strong> <a href="../lab_04/">Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</a></p>
+
+    <h3>Day 26 — Debug with <code>git bisect</code></h3>
+    <p><strong>Goal:</strong> Identify the commit that introduced a bug.</p>
+    <ol>
+      <li>Mark the repository as bad.</li>
+      <li>Mark a known-good commit.</li>
+      <li>Use <code>git bisect</code> to isolate the issue.</li>
+    </ol>
+    <pre><code class="language-bash">git bisect start
+git bisect bad
+git bisect good &lt;good-commit&gt;</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></p>
+
+    <h3>Day 27 — Add a submodule</h3>
+    <p><strong>Goal:</strong> Learn how a repo can include another Git repo.</p>
+    <ol>
+      <li>Initialize submodule support.</li>
+      <li>Add a repo as a submodule.</li>
+      <li>Commit the parent repository changes.</li>
+    </ol>
+    <pre><code class="language-bash">git submodule add https://github.com/owner/repo.git vendor/repo</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></p>
+
+    <h3>Day 28 — Use Git LFS</h3>
+    <p><strong>Goal:</strong> Manage large binary files more efficiently.</p>
+    <ol>
+      <li>Install Git LFS.</li>
+      <li>Track large file types such as <code>*.png</code> or <code>*.zip</code>.</li>
+      <li>Commit the tracked assets.</li>
+    </ol>
+    <pre><code class="language-bash">git lfs install
+git lfs track "*.png"
+git add .gitattributes</code></pre>
+    <p><strong>Solution reference:</strong> <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></p>
+
+    <h3>Day 29 — GitHub Actions basics</h3>
+    <p><strong>Goal:</strong> Automate a simple workflow after push or pull request events.</p>
+    <ol>
+      <li>Create a workflow file under <code>.github/workflows/</code>.</li>
+      <li>Run a shell command such as <code>echo</code> or a basic test.</li>
+      <li>Check the Actions tab after pushing.</li>
+    </ol>
+    <p><strong>Solution reference:</strong> <a href="../lab_08/">Lab 08 — Automating Workflows with GitHub Actions</a></p>
+
+    <h3>Day 30 — Final challenge: complete Git workflow</h3>
+    <p><strong>Goal:</strong> Simulate a real project lifecycle from start to finish.</p>
+    <ol>
+      <li>Create a project repo and initial commit.</li>
+      <li>Make several feature branches.</li>
+      <li>Merge one branch and resolve conflicts.</li>
+      <li>Open a pull request and review.</li>
+      <li>Tag the final release.</li>
+    </ol>
+    <p><strong>Solution reference:</strong> Use the combined workflows from <a href="../lab_o1/">Lab 01</a>, <a href="../lab_04/">Lab 04</a>, <a href="../lab_06/">Lab 06</a>, <a href="../lab_07/">Lab 07</a>, and <a href="../lab_09/">Lab 09</a>.</p>
+
+    <h2>Quick solution map</h2>
+    <ul>
+      <li><a href="../lab_o1/">Lab 01</a> — setup, repo init, remote push</li>
+      <li><a href="../lab_02/">Lab 02</a> — good commit messages</li>
+      <li><a href="../lab_04/">Lab 04</a> — branches and conflict resolution</li>
+      <li><a href="../lab_05/">Lab 05</a> — history and remotes</li>
+      <li><a href="../lab_06/">Lab 06</a> — restore, reset, stash, revert</li>
+      <li><a href="../lab_07/">Lab 07</a> — issues, PRs, and collaboration</li>
+      <li><a href="../lab_08/">Lab 08</a> — GitHub Actions</li>
+      <li><a href="../lab_09/">Lab 09</a> — tags and releases</li>
+      <li><a href="../lab_10/">Lab 10</a> — advanced Git tools</li>
+    </ul>
+
+    <div class="next-lab">
+      <strong>Next step:</strong> Continue with the main learning sequence from <a href="../">Mastering Git and GitHub</a>.
+    </div>
   </main>
 </body>
 </html>
