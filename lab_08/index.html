@@ -10,6 +10,20 @@
   <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
   <main class="container">
     <h1>Automating Workflows with GitHub Actions</h1>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Intermediate</span><span><strong>Time:</strong> 40–50 minutes</span></p>
+      <p><strong>Prerequisites:</strong> A GitHub repository and basic branch/PR knowledge; Lab 07 is recommended.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Recognize workflow, event, job, and step responsibilities.</li>
+        <li>Create a basic automated check for pushes and pull requests.</li>
+        <li>Use permissions and secrets carefully and troubleshoot failed runs.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> workflow events, jobs, steps, runners, permissions, secrets, CI, and deployment.</p>
+      <p><strong>Steps:</strong> Build from a simple workflow, then examine security and deployment details before the checkpoint.</p>
+      <p><strong>Expected result:</strong> A workflow that reports a useful pass/fail check for a repository change.</p>
+    </section>
     <p class="lead">GitHub Actions runs automation on repository events. Use continuous integration to check proposed changes and continuous delivery or deployment to publish approved changes. Workflow YAML files live in <code>.github/workflows/</code>.</p>
 
     <h2>Step 1: Understand the workflow model</h2>
@@ -72,7 +86,22 @@ jobs:
       <li>Cause a broken link in a local branch, observe the failed check, then fix it.</li>
       <li>Explain why a Pages deployment needs more permissions than a read-only check.</li>
     </ol>
-    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_09/">Lab 09 — Git Tags, Versioning, and GitHub Releases</a></div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: add a continuous integration check</h2>
+      <p>Create a workflow that runs on pushes and pull requests, then make a change that passes and a change that fails.</p>
+      <ol>
+        <li>What event starts a workflow?</li>
+        <li>Why should a workflow request only the permissions it needs?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>Events such as <code>push</code> or <code>pull_request</code> trigger workflows. Restrict permissions so a compromised or misconfigured job cannot make unnecessary changes to the repository. Use the Actions run log to locate a failing step.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../lab_07/">← Previous: Lab 07 — Collaboration</a>
+      <a href="../lab_09/">Next: Lab 09 — Releases →</a>
+    </nav>
   </main>
 </body>
 </html>

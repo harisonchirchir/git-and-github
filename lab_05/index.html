@@ -11,6 +11,20 @@
   <main class="container">
     <h1>Everyday Git: Inspecting Changes and Working with Remotes</h1>
     <p class="lead">Learn the everyday commands for inspecting your work, reading project history, and synchronizing local and remote branches safely.</p>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Beginner</span><span><strong>Time:</strong> 35–45 minutes</span></p>
+      <p><strong>Prerequisites:</strong> A repository with at least one commit; revisit Lab 01 if needed.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Inspect staged, unstaged, and committed changes.</li>
+        <li>Search commit history and review differences.</li>
+        <li>Explain and use remote, fetch, pull, and push workflows.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> working tree, staging area, commit history, remotes, upstream branches, fetch, pull, and push.</p>
+      <p><strong>Steps:</strong> Practice the commands in each numbered section, then complete the daily-loop checkpoint.</p>
+      <p><strong>Expected result:</strong> A reviewed, focused commit pushed to the correct remote branch with the working tree understood.</p>
+    </section>
 
     <h2>Step 1: Understand the three local states</h2>
     <p>Git work happens across three local states: the <strong>working tree</strong> contains the files you edit, the <strong>staging area</strong> contains selected changes for the next commit, and the <strong>repository history</strong> contains recorded commits.</p>
@@ -66,7 +80,22 @@ git push</code></pre>
       <li>Stage intended files or hunks; review with <code>git diff --staged</code>.</li>
       <li>Commit clearly, push the branch, and open a pull request.</li>
     </ol>
-    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_06/">Lab 06 — Undoing Changes and Recovering Work</a></div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: review before you push</h2>
+      <p>Make a small change, inspect it, stage it, inspect the staged version, and identify the remote branch you would push to.</p>
+      <ol>
+        <li>Which command shows changes that are not staged?</li>
+        <li>How does <code>git fetch</code> differ from <code>git pull</code>?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>Use <code>git diff</code> for unstaged changes and <code>git diff --staged</code> for staged changes. Fetch downloads remote history without integrating it; pull fetches and then integrates according to the configured behavior.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../lab_04/">← Previous: Lab 04 — Workflows</a>
+      <a href="../lab_06/">Next: Lab 06 — Recovery →</a>
+    </nav>
   </main>
 </body>
 </html>

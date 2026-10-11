@@ -1,5 +1,7 @@
 # Mastering Git Workflows and Merge Conflict Resolution
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 This lab bridges the gap between basic Git usage and real-world team collaboration. You will learn how to choose and apply the right branching model for your project, when to merge versus rebase, and how to resolve merge conflicts calmly and methodically. By the end of this lab, you will be comfortable working in teams where multiple people are changing the same codebase at the same time.
 
 ## Why branching workflows matter

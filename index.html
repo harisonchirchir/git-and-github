@@ -3,59 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mastering Git and GitHub</title>
+  <meta name="description" content="A hands-on learning path for Git and GitHub, from your first commit to collaborative workflows and releases.">
+  <title>Learn Git and GitHub</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mastering Git and GitHub</h1>
-  <p>A structured, hands-on learning journey covering Git fundamentals, commit best practices, branching, remote workflows, Pull Requests, and automation.</p>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="./" aria-current="page">Learn Git and GitHub</a>
+      <a href="30-day-git-challenge/">30-day challenge</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">A hands-on course</p>
+      <h1 id="page-title">Mastering Git and GitHub</h1>
+      <p class="lead">Build practical version-control skills one lesson at a time, from your first local commit to reviewed, automated releases.</p>
+      <a class="button-link" href="lab_o1/">Start here: Lab 01</a>
+      <p class="course-note">No prior Git experience required. You will need Git installed, a terminal, and a GitHub account for the collaboration lessons. Each lesson includes an estimated time and a hands-on checkpoint.</p>
+    </section>
 
-  <h2>Labs</h2>
-  <ul class="lab-list">
-    <li>
-      <a href="lab_o1/">Lab 01 — Introduction to Git and GitHub</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Installation, initialization, branching, and first push.</p>
-    </li>
-    <li>
-      <a href="lab_02/">Lab 02 — The Ultimate Guide to Writing a Good Commit Message</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Commit anatomy, conventional commits, linting, and history hygiene.</p>
-    </li>
-    <li>
-      <a href="lab_03/">Lab 03 — Free Hosting For Web Projects</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Compare free hosting platforms and deployment workflows.</p>
-    </li>
-    <li>
-      <a href="lab_04/">Lab 04 — Mastering Git Workflows and Merge Conflict Resolution</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Branching models, merging, rebasing, and conflict resolution.</p>
-    </li>
-    <li>
-      <a href="lab_05/">Lab 05 — Everyday Git: Inspecting Changes and Working with Remotes</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Status, diffs, history, remotes, fetch, pull, and upstream branches.</p>
-    </li>
-    <li>
-      <a href="lab_06/">Lab 06 — Undoing Changes and Recovering Work</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Restore, revert, reset, stash, and reflog with safe-use guidance.</p>
-    </li>
-    <li>
-      <a href="lab_07/">Lab 07 — GitHub Collaboration: Issues, Pull Requests, and Reviews</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Track work, review changes, protect branches, and choose merge strategies.</p>
-    </li>
-    <li>
-      <a href="lab_08/">Lab 08 — Automating Workflows with GitHub Actions</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Workflow triggers, jobs, CI checks, secrets, permissions, and deployments.</p>
-    </li>
-    <li>
-      <a href="lab_09/">Lab 09 — Git Tags, Versioning, and GitHub Releases</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Mark versions, use semantic versioning, and publish releases.</p>
-    </li>
-    <li>
-      <a href="lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Cherry-pick, bisect, blame, worktrees, submodules, and Git LFS.</p>
-    </li>
-    <li>
-      <a href="30-day-git-challenge/">30-Day Git Challenge</a>
-      <p style="margin-top: 6px; margin-bottom: 0;">Practice exercises and challenges.</p>
-    </li>
-  </ul>
+    <section aria-labelledby="path-title">
+      <h2 id="path-title">Your learning path</h2>
+      <ol class="path-list">
+        <li><strong>Start with the foundations:</strong> Labs 01–02 cover Git setup, repositories, commits, and commit messages.</li>
+        <li><strong>Practice everyday work:</strong> Labs 04–06 teach workflows, remotes, and safe recovery.</li>
+        <li><strong>Collaborate and ship:</strong> Labs 07–09 cover pull requests, Actions, and releases.</li>
+        <li><strong>Go deeper:</strong> Lab 10 introduces advanced tools. Finish with the <a href="30-day-git-challenge/">30-day challenge</a>.</li>
+      </ol>
+      <p><strong>Where does hosting fit?</strong> Lab 03 is an optional deployment lesson. Take it after Lab 01 if you want to publish a project early, or after Lab 08 to connect hosting concepts with automated deployment.</p>
+    </section>
+
+    <section aria-labelledby="lessons-title">
+      <h2 id="lessons-title">Browse lessons</h2>
+      <div class="course-filters">
+        <label for="lesson-search">Search by topic or skill</label>
+        <input id="lesson-search" type="search" placeholder="Try “branches”, “releases”, or “GitHub”" autocomplete="off">
+        <label for="level-filter">Filter by difficulty</label>
+        <select id="level-filter">
+          <option value="all">All levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+          <option value="optional">Optional</option>
+        </select>
+        <p id="filter-status" class="filter-status" aria-live="polite">Showing all 11 learning activities.</p>
+      </div>
+
+      <ul class="lesson-grid" id="lesson-list">
+        <li class="lesson-card" data-level="beginner" data-search="setup installation configuration init repository first commit push branch pull request git github fundamentals">
+          <p class="lesson-meta"><span>Beginner</span><span>45–60 min</span></p>
+          <h3><a href="lab_o1/">Lab 01 — Introduction to Git and GitHub</a></h3>
+          <p>Install and configure Git, initialize a repository, commit changes, create a branch, and push to GitHub.</p>
+          <p><strong>You will be able to:</strong> create a local repo and publish a first change.</p>
+        </li>
+        <li class="lesson-card" data-level="beginner" data-search="commit messages conventional commits history hygiene linting">
+          <p class="lesson-meta"><span>Beginner</span><span>30–40 min</span></p>
+          <h3><a href="lab_02/">Lab 02 — Write Better Commit Messages</a></h3>
+          <p>Learn commit anatomy, Conventional Commits, and practical history hygiene.</p>
+          <p><strong>You will be able to:</strong> write descriptive, consistent commit messages.</p>
+        </li>
+        <li class="lesson-card" data-level="optional" data-search="optional hosting deployment publish github pages vercel netlify render surge website">
+          <p class="lesson-meta"><span>Optional</span><span>35–50 min</span></p>
+          <h3><a href="lab_03/">Lab 03 — Free Hosting for Web Projects</a></h3>
+          <p>Compare static hosting platforms and learn the basic steps to publish a web project.</p>
+          <p><strong>You will be able to:</strong> choose a hosting option that fits a project.</p>
+        </li>
+        <li class="lesson-card" data-level="intermediate" data-search="workflow branch branching merge rebase conflict resolution collaboration">
+          <p class="lesson-meta"><span>Intermediate</span><span>50–60 min</span></p>
+          <h3><a href="lab_04/">Lab 04 — Workflows and Merge Conflicts</a></h3>
+          <p>Compare branching models, merging and rebasing, and resolve conflicts step by step.</p>
+          <p><strong>You will be able to:</strong> integrate branch work and resolve a conflict safely.</p>
+        </li>
+        <li class="lesson-card" data-level="beginner" data-search="everyday git status diff log remote fetch pull push history">
+          <p class="lesson-meta"><span>Beginner</span><span>35–45 min</span></p>
+          <h3><a href="lab_05/">Lab 05 — Everyday Git and Remotes</a></h3>
+          <p>Inspect changes, read history, connect remotes, and synchronize branches.</p>
+          <p><strong>You will be able to:</strong> explain and use status, diff, fetch, pull, and push.</p>
+        </li>
+        <li class="lesson-card" data-level="intermediate" data-search="undo recovery restore reset revert stash reflog">
+          <p class="lesson-meta"><span>Intermediate</span><span>40–50 min</span></p>
+          <h3><a href="lab_06/">Lab 06 — Undoing and Recovering Work</a></h3>
+          <p>Choose safe recovery tools for uncommitted edits, commits, and temporarily paused work.</p>
+          <p><strong>You will be able to:</strong> select between restore, revert, reset, stash, and reflog.</p>
+        </li>
+        <li class="lesson-card" data-level="intermediate" data-search="github collaboration issues pull requests review forks branch protection">
+          <p class="lesson-meta"><span>Intermediate</span><span>45–60 min</span></p>
+          <h3><a href="lab_07/">Lab 07 — GitHub Collaboration</a></h3>
+          <p>Track work with issues, submit and review pull requests, and contribute through forks.</p>
+          <p><strong>You will be able to:</strong> complete a reviewed pull request lifecycle.</p>
+        </li>
+        <li class="lesson-card" data-level="intermediate" data-search="github actions automation workflow ci deployment permissions secrets">
+          <p class="lesson-meta"><span>Intermediate</span><span>40–50 min</span></p>
+          <h3><a href="lab_08/">Lab 08 — Automating with GitHub Actions</a></h3>
+          <p>Build a workflow, run checks, handle permissions, and understand deployment automation.</p>
+          <p><strong>You will be able to:</strong> create and troubleshoot a basic CI workflow.</p>
+        </li>
+        <li class="lesson-card" data-level="beginner" data-search="tags releases versioning semantic version semver">
+          <p class="lesson-meta"><span>Beginner</span><span>30–40 min</span></p>
+          <h3><a href="lab_09/">Lab 09 — Tags, Versioning, and Releases</a></h3>
+          <p>Mark milestones with Git tags, apply semantic versioning, and publish a release.</p>
+          <p><strong>You will be able to:</strong> create and share a release tag responsibly.</p>
+        </li>
+        <li class="lesson-card" data-level="advanced" data-search="advanced cherry-pick bisect blame worktrees submodules git lfs">
+          <p class="lesson-meta"><span>Advanced</span><span>45–60 min</span></p>
+          <h3><a href="lab_10/">Lab 10 — Advanced Git Tools</a></h3>
+          <p>Use cherry-pick, bisect, blame, worktrees, submodules, and Git LFS where appropriate.</p>
+          <p><strong>You will be able to:</strong> choose an advanced tool for a specific repository problem.</p>
+        </li>
+        <li class="lesson-card" data-level="intermediate" data-search="challenge practice daily exercises capstone hands-on">
+          <p class="lesson-meta"><span>Intermediate</span><span>30 days, self-paced</span></p>
+          <h3><a href="30-day-git-challenge/">30-Day Git Challenge</a></h3>
+          <p>Reinforce the lessons with daily practice and a final end-to-end Git workflow.</p>
+          <p><strong>You will be able to:</strong> combine Git and GitHub skills in a realistic project.</p>
+        </li>
+      </ul>
+      <p id="no-results" class="no-results" hidden>No lessons match those filters. Try a broader search or choose “All levels.”</p>
+    </section>
+  </main>
+  <script>
+    const searchInput = document.querySelector("#lesson-search");
+    const levelFilter = document.querySelector("#level-filter");
+    const lessonCards = [...document.querySelectorAll(".lesson-card")];
+    const filterStatus = document.querySelector("#filter-status");
+    const noResults = document.querySelector("#no-results");
+
+    function filterLessons() {
+      const query = searchInput.value.trim().toLowerCase();
+      const level = levelFilter.value;
+      let visibleCount = 0;
+
+      for (const card of lessonCards) {
+        const matchesText = card.dataset.search.includes(query);
+        const matchesLevel = level === "all" || card.dataset.level === level;
+        const isVisible = matchesText && matchesLevel;
+        card.hidden = !isVisible;
+        visibleCount += Number(isVisible);
+      }
+
+      filterStatus.textContent = `Showing ${visibleCount} of ${lessonCards.length} learning activities.`;
+      noResults.hidden = visibleCount !== 0;
+    }
+
+    searchInput.addEventListener("input", filterLessons);
+    levelFilter.addEventListener("change", filterLessons);
+  </script>
 </body>
 </html>

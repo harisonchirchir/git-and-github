@@ -1,5 +1,7 @@
 # The Ultimate Guide to Writing a Good Commit Message
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 This lab focuses on one of the most important soft skills in software development: writing clear, consistent, and meaningful Git commit messages. A good commit message is more than a formality; it is a communication tool that tells the story of your project, helps teammates understand changes quickly, and makes debugging and maintenance far easier. By the end of this lab, you will understand the structure of a strong commit message, how to apply conventions like Conventional Commits, and how to maintain a clean, professional project history.
 
 ### Important of good commit messages

@@ -11,6 +11,20 @@
   <main class="container">
     <h1>Git Tags, Versioning, and GitHub Releases</h1>
     <p class="lead">Commits record development history; tags give important commits stable names, often for versions. GitHub Releases use tags to publish release notes and downloadable files.</p>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Beginner</span><span><strong>Time:</strong> 30–40 minutes</span></p>
+      <p><strong>Prerequisites:</strong> A Git repository with commits and a remote; Lab 01 is recommended.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Explain how tags identify specific commits.</li>
+        <li>Apply semantic versioning to a release.</li>
+        <li>Publish a GitHub release and avoid moving shared tags unexpectedly.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> lightweight and annotated tags, semantic versioning, release notes, and published tags.</p>
+      <p><strong>Steps:</strong> Create a test tag, inspect it, and complete the release checkpoint using a practice repository.</p>
+      <p><strong>Expected result:</strong> An annotated version tag on the intended commit and a release draft with meaningful notes.</p>
+    </section>
 
     <h2>Step 1: Understand tags</h2>
     <p>A <strong>lightweight tag</strong> is a name pointing to a commit. An <strong>annotated tag</strong> stores metadata such as tagger, date, and message; it is generally preferred for releases.</p>
@@ -61,7 +75,22 @@ git tag -a v1.1.0 &lt;correct-commit&gt; -m "Release 1.1.0"</code></pre>
       <li>Push the tag to a test repository and create a GitHub Release with concise notes.</li>
       <li>Explain why a release tag should not be silently moved.</li>
     </ol>
-    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_10/">Lab 10 — Advanced Git Tools and Repository Management</a></div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: prepare a release</h2>
+      <p>Choose a completed commit, create an annotated <code>v1.0.0</code> tag, push it, then draft release notes.</p>
+      <ol>
+        <li>What makes an annotated tag different from a lightweight tag?</li>
+        <li>What do the major, minor, and patch positions communicate in semantic versioning?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>Create an annotated tag with <code>git tag -a v1.0.0 -m "Release 1.0.0"</code> and push it with <code>git push origin v1.0.0</code>. Annotated tags include metadata and a message. Major signals an incompatible change, minor adds compatible functionality, and patch fixes compatible issues.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../lab_08/">← Previous: Lab 08 — GitHub Actions</a>
+      <a href="../lab_10/">Next: Lab 10 — Advanced Tools →</a>
+    </nav>
   </main>
 </body>
 </html>

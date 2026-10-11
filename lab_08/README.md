@@ -1,5 +1,7 @@
 # Automating Workflows with GitHub Actions
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 GitHub Actions runs automated workflows in response to repository events or schedules. Continuous integration (CI) commonly checks each proposed change; continuous delivery/deployment (CD) can publish approved changes. Workflows are YAML files stored under `.github/workflows/`.
 
 ## Step 1: Understand the workflow model

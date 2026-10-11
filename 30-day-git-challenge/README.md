@@ -493,19 +493,51 @@ Solution reference:
 
 ### Day 30 — Final project challenge
 
-Goal: Simulate a full Git workflow from start to finish.
+Goal: Use a disposable GitHub repository to simulate a small team workflow from setup through a versioned release.
 
-Tasks:
-- Create a repo
-- Add files
-- Make multiple commits
-- Create branches
-- Resolve conflicts
-- Open a PR
-- Merge and tag a release
+1. Create a GitHub repository with a README, clone it, and make an initial commit on `main`.
+2. Create `feature/project-summary`. Change a README line, commit it, and push the branch.
+3. On `main`, edit that same line differently, commit, and push the change. This intentional divergence is only for the disposable practice repository.
+4. Switch to the feature branch, fetch, and merge `main`. Resolve the README conflict, remove the markers, stage, and commit the resolution.
+5. Push the branch and open a pull request targeting `main`. Describe and review the change, then merge it.
+6. Update local `main`, create an annotated `v1.0.0` tag on the merged commit, push the tag, and publish a GitHub Release with notes.
 
-Solution reference:
-- Combine the workflows from Labs 01, 04, 06, 07, and 09
+```bash
+git switch -c feature/project-summary
+# Edit and commit the README change on the feature branch.
+git add README.md
+git commit -m "feat: add project summary"
+git push -u origin feature/project-summary
+
+git switch main
+# Edit the same README line differently, then commit it on main.
+git add README.md
+git commit -m "docs: clarify project purpose"
+git push origin main
+
+git switch feature/project-summary
+git fetch origin
+git merge main
+# Resolve README.md, remove conflict markers, then:
+git add README.md
+git commit -m "Merge main and resolve README conflict"
+git push
+
+# After the pull request is merged on GitHub:
+git switch main
+git pull origin main
+git tag -a v1.0.0 -m "Release 1.0.0"
+git push origin v1.0.0
+```
+
+Expected result: a reviewed pull request is merged to `main`, the conflict is resolved cleanly, and the merged commit has a `v1.0.0` GitHub Release.
+
+Hints:
+- Inspect changes with `git status` and `git diff`; verify no conflict markers remain before committing.
+- If needed, use `git merge --abort` to cancel the practice merge.
+- Before tagging, check `git log --oneline -1` and inspect the tag with `git show v1.0.0`.
+
+Solution references: [Lab 01](../lab_o1/), [Lab 04](../lab_04/), [Lab 07](../lab_07/), and [Lab 09](../lab_09/).
 
 ## Quick solution map
 
@@ -529,4 +561,3 @@ If you want the fastest path to the answer, use these references:
 - Keep each commit focused and meaningful
 
 This 30-day challenge is meant to build confidence through repetition, not perfection. The goal is to keep practicing until the Git commands become natural.
-

@@ -1,5 +1,7 @@
 # Advanced Git Tools and Repository Management
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 This lab introduces tools for moving individual commits, finding the change that introduced a bug, investigating line history, working on multiple branches at once, and managing repositories with dependencies or large binary assets. These features are valuable, but use them only when they fit the project's needs.
 
 ## Step 1: Apply one commit with cherry-pick

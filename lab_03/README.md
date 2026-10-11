@@ -1,5 +1,7 @@
 # Free Hosting For Web Projects
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 This lab explores the most practical free hosting platforms for web projects. Whether you are hosting a personal portfolio, a documentation site, a small web app, or a prototype, choosing the right free hosting service can save you money and simplify deployment. By the end of this lab, you will understand the strengths and limitations of GitHub Pages, Vercel, Netlify, Surge.sh, and Render, and know how to deploy projects to each platform using their respective CLIs.
 
 ## Why consider free hosting?

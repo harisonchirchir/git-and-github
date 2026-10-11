@@ -13,6 +13,20 @@
   <main class="container">
     <h1>Introduction to Git and GitHub</h1>
     <p class="lead">This is my learning journey with Git and GitHub. I will use GitHub to host my code and Git to track changes to my code.</p>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Beginner</span><span><strong>Time:</strong> 45–60 minutes</span></p>
+      <p><strong>Prerequisites:</strong> A computer with terminal access and an internet connection. No Git experience is required.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Install and configure Git, then initialize a local repository.</li>
+        <li>Track changes with staging and commits.</li>
+        <li>Create a branch, connect to GitHub, and understand the pull request workflow.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> repositories, snapshots, staging, commits, branches, remotes, and pull requests.</p>
+      <p><strong>Steps:</strong> Follow the numbered sections below in order. Finish with the checkpoint at the end.</p>
+      <p><strong>Expected result:</strong> A GitHub repository with a committed README and a pushed feature branch ready for a pull request.</p>
+    </section>
 
     <h2>What is Git?</h2>
     <p>Git is a system that tracks changes made to source code. This allows us to keep track of changes to our code and to be able to revert changes if needed.</p>
@@ -164,9 +178,22 @@ git checkout &lt;branch-name&gt;    # to switch to an existing branch</code></pr
     <p><strong>Dive Deeper</strong> — There are many resources available to learn more about Git and GitHub. Consider exploring topics such as merging conflicts, using <code>git stash</code>, or leveraging GitHub Actions for automating your workflow.</p>
     <p>Proficiency in Git and GitHub will open up a world of opportunities for you as a developer.</p>
 
-    <div class="next-lab">
-      <strong>Next Lab:</strong> Ready to level up? Continue to <a href="../lab_02/">Lab 02 — The Ultimate Guide to Writing a Good Commit Message</a>
-    </div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: publish a first change</h2>
+      <p>Create a repository, commit a README, create a feature branch, and push it to a GitHub repository you own.</p>
+      <ol>
+        <li>What is the difference between a local repository and a remote?</li>
+        <li>Why should a feature be developed on a branch?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>Initialize with <code>git init</code>, stage and commit your file, then create a branch with <code>git switch -c add-readme</code>. Create an empty GitHub repository, add it as <code>origin</code>, and push with <code>git push -u origin add-readme</code>. A local repository is on your computer; a remote is a hosted copy used to share and synchronize history.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../">← Course overview</a>
+      <a href="../lab_02/">Next: Lab 02 — Commit Messages →</a>
+    </nav>
   </main>
 </body>
 </html>

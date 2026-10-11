@@ -1,5 +1,7 @@
 # Introduction to Git and GitHub
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 This is my learning journey with Git and GitHub. I will use GitHub to host my code and Git to track changes to my code.
 
 ## What is Git?

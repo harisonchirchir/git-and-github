@@ -11,6 +11,20 @@
   <main class="container">
     <h1>Advanced Git Tools and Repository Management</h1>
     <p class="lead">Explore tools for applying individual commits, finding regressions, examining line history, using multiple worktrees, and managing dependencies or large binary assets.</p>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Advanced</span><span><strong>Time:</strong> 45–60 minutes</span></p>
+      <p><strong>Prerequisites:</strong> Comfortable with commits, branches, and remotes; Labs 04–06 are recommended.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Apply a focused commit and locate a regression in history.</li>
+        <li>Investigate line history and work across multiple worktrees.</li>
+        <li>Recognize when submodules or Git LFS are appropriate.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> cherry-pick, bisect, blame, worktrees, submodules, and Git LFS.</p>
+      <p><strong>Steps:</strong> Try each command in a disposable repository and use the final checkpoint to choose the right tool for each scenario.</p>
+      <p><strong>Expected result:</strong> A justified choice of Git tool for each scenario, demonstrated safely in a practice repo.</p>
+    </section>
 
     <h2>Step 1: Apply one commit with cherry-pick</h2>
     <p><code>git cherry-pick</code> applies an existing commit's changes to the current branch and creates a new commit. It is useful for backporting a focused fix:</p>
@@ -73,7 +87,22 @@ git commit -m "Track design assets with Git LFS"</code></pre>
       <li>Create and remove a temporary worktree.</li>
       <li>Explain how submodule pointers and LFS pointer files differ from ordinary files.</li>
     </ol>
-    <div class="next-lab"><strong>All labs:</strong> Return to the <a href="../">Mastering Git and GitHub home page</a></div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: choose an advanced tool</h2>
+      <p>Match each scenario with a tool: backport one fix, find a regression, or inspect the history of a line.</p>
+      <ol>
+        <li>Which command can binary-search commits to locate a bug?</li>
+        <li>Why might a team choose a worktree instead of repeatedly switching branches?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>Use <code>git bisect</code> to find a regression, <code>git cherry-pick</code> to apply one selected commit, and <code>git blame</code> to inspect line history. Worktrees allow separate branches in separate directories while sharing repository data.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../lab_09/">← Previous: Lab 09 — Releases</a>
+      <a href="../30-day-git-challenge/">Next: 30-Day Git Challenge →</a>
+    </nav>
   </main>
 </body>
 </html>

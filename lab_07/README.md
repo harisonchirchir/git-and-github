@@ -1,5 +1,7 @@
 # GitHub Collaboration: Issues, Pull Requests, and Reviews
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 Git provides version control; GitHub adds tools for planning, discussing, reviewing, and governing changes. This lab follows a change from a task to a reviewed pull request and explains repository settings that help keep the default branch dependable.
 
 ## Step 1: Track work with Issues

@@ -1,5 +1,7 @@
 # Undoing Changes and Recovering Work
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 Mistakes are part of working with version control. This lab explains which Git command to use based on where the change is: in the working tree, in the staging area, in a local commit, or already published to a remote. The safest recovery starts by inspecting the repository state before changing it.
 
 ## Step 1: Inspect before undoing

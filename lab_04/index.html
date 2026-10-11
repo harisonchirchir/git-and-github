@@ -13,6 +13,20 @@
   <main class="container">
     <h1>Mastering Git Workflows and Merge Conflict Resolution</h1>
     <p class="lead">This lab bridges the gap between basic Git usage and real-world team collaboration. You will learn how to choose and apply the right branching model for your project, when to merge versus rebase, and how to resolve merge conflicts calmly and methodically. By the end of this lab, you will be comfortable working in teams where multiple people are changing the same codebase at the same time.</p>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Intermediate</span><span><strong>Time:</strong> 50–60 minutes</span></p>
+      <p><strong>Prerequisites:</strong> Create and switch branches from Lab 01; familiarity with status and commits is helpful.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Choose a branching model that fits a team's release habits.</li>
+        <li>Explain the differences between merging and rebasing.</li>
+        <li>Resolve conflicts, verify the result, and complete integration.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> Git Flow, GitHub Flow, trunk-based development, merge, rebase, and conflict markers.</p>
+      <p><strong>Steps:</strong> Follow the workflow comparison and conflict-resolution sections in order, then practice in a disposable repository.</p>
+      <p><strong>Expected result:</strong> A completed branch integration with all conflicts resolved and the final changes reviewed.</p>
+    </section>
 
     <h2>Why branching workflows matter</h2>
     <p>Branching is more than just creating a separate line of development. The strategy you choose determines how your team integrates work, releases software, and handles mistakes. Without a clear workflow, branches become chaotic, merges turn into nightmares, and code review loses meaning. A solid workflow keeps the main branch stable, makes releases predictable, and reduces the time spent fixing integration problems.</p>
@@ -208,9 +222,22 @@
     <p><strong>Dive Deeper</strong> — Explore interactive rebasing (<code>git rebase -i</code>) for cleaning up branch history, <code>git rerere</code> for automatically reusing recorded conflict resolutions, and <code>git worktree</code> for working on multiple branches simultaneously without switching back and forth.</p>
     <p>Mastering workflows and conflicts is what separates Git beginners from Git professionals. Keep practicing, and collaboration will feel easier with every repository you touch.</p>
 
-    <div class="next-lab">
-      <strong>Next Lab:</strong> Continue to <a href="../lab_05/">Lab 05 — Everyday Git: Inspecting Changes and Working with Remotes</a>
-    </div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: resolve a conflict</h2>
+      <p>In a practice repository, change the same line on two branches, merge the branches, and resolve the conflict.</p>
+      <ol>
+        <li>What do the conflict markers <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> show?</li>
+        <li>When should you avoid rebasing a branch?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>Conflict markers separate the competing edits. Edit the file to the intended final content, remove all markers, inspect the result, stage it, and complete the merge. Avoid rewriting commits already shared with others unless the team has explicitly coordinated that change.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../lab_03/">← Previous: Lab 03 — Hosting (optional)</a>
+      <a href="../lab_05/">Next: Lab 05 — Everyday Git →</a>
+    </nav>
   </main>
 </body>
 </html>

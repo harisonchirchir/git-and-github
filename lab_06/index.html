@@ -10,6 +10,20 @@
   <nav class="navbar"><a href="../">← Mastering Git and GitHub</a></nav>
   <main class="container">
     <h1>Undoing Changes and Recovering Work</h1>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Intermediate</span><span><strong>Time:</strong> 40–50 minutes</span></p>
+      <p><strong>Prerequisites:</strong> Know how to inspect changes and commits; Lab 05 is recommended.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Inspect the current state before choosing a recovery command.</li>
+        <li>Distinguish restoring files, resetting local history, and reverting a shared commit.</li>
+        <li>Use stash and reflog to protect or recover work.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> working-tree restore, staged changes, reset modes, revert, stash, and reflog.</p>
+      <p><strong>Steps:</strong> Work through the recovery scenarios below in a disposable repository. Destructive commands require extra care.</p>
+      <p><strong>Expected result:</strong> The correct recovery action for each scenario, without accidentally losing uncommitted or shared work.</p>
+    </section>
     <p class="lead">Choose the right recovery command based on whether a change is uncommitted, staged, committed locally, or already shared. Inspect first: some undo operations are destructive.</p>
 
     <h2>Step 1: Inspect before undoing</h2>
@@ -65,7 +79,22 @@ git branch recovery &lt;commit&gt;</code></pre>
       <li>Stash an edit, switch branches, and restore the stash.</li>
       <li>Inspect <code>git reflog</code> and explain how a recovery branch protects a dangling commit.</li>
     </ol>
-    <div class="next-lab"><strong>Next Lab:</strong> Continue to <a href="../lab_07/">Lab 07 — GitHub Collaboration</a></div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: pick a safe recovery</h2>
+      <p>For each case, choose the least disruptive command: discard an unstaged edit, undo a published commit, or temporarily save unfinished work.</p>
+      <ol>
+        <li>Which command safely undoes a commit already pushed for others?</li>
+        <li>What should you check before using reset or restore?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>Use <code>git revert &lt;commit&gt;</code> to add a new commit that reverses a published change. Inspect <code>git status</code> and the diff first; reset and restore can discard work depending on the mode and path.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../lab_05/">← Previous: Lab 05 — Everyday Git</a>
+      <a href="../lab_07/">Next: Lab 07 — Collaboration →</a>
+    </nav>
   </main>
 </body>
 </html>

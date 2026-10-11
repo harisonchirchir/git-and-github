@@ -1,5 +1,7 @@
 # Everyday Git: Inspecting Changes and Working with Remotes
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 This lab covers the commands used throughout a normal Git workday. You will inspect the working tree before changing it, review commit history, connect local and remote repositories, and synchronize branches without confusing fetch, pull, and push.
 
 ## Step 1: Understand the three local states

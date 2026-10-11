@@ -13,6 +13,20 @@
   <main class="container">
     <h1>The Ultimate Guide to Writing a Good Commit Message</h1>
     <p class="lead">This lab focuses on one of the most important soft skills in software development: writing clear, consistent, and meaningful Git commit messages. A good commit message is more than a formality; it is a communication tool that tells the story of your project, helps teammates understand changes quickly, and makes debugging and maintenance far easier. By the end of this lab, you will understand the structure of a strong commit message, how to apply conventions like Conventional Commits, and how to maintain a clean, professional project history.</p>
+    <section class="lesson-overview" aria-labelledby="lesson-guide">
+      <h2 id="lesson-guide">Lesson guide</h2>
+      <p class="lesson-facts"><span><strong>Level:</strong> Beginner</span><span><strong>Time:</strong> 30–40 minutes</span></p>
+      <p><strong>Prerequisites:</strong> Complete <a href="../lab_o1/">Lab 01</a> and be able to create commits.</p>
+      <h3>Learning outcomes</h3>
+      <ul>
+        <li>Identify the subject, body, and optional footer of a commit message.</li>
+        <li>Write concise messages using Conventional Commits.</li>
+        <li>Explain how readable history helps collaboration and debugging.</li>
+      </ul>
+      <p><strong>Key concepts:</strong> commit anatomy, imperative subjects, Conventional Commit types, and readable history.</p>
+      <p><strong>Steps:</strong> Work through the numbered sections below, then write and review sample messages at the checkpoint.</p>
+      <p><strong>Expected result:</strong> A short set of focused commits with specific messages that explain the change clearly.</p>
+    </section>
 
     <h3>Important of good commit messages</h3>
     <ol>
@@ -101,9 +115,22 @@
     <p><strong>Dive Deeper</strong> - Explore tools like <code>git rebase -i</code>, <code>git notes</code>, and advanced <code>git log</code> formatting to further refine your workflow. Consider integrating commitlint and commitizen into your team's CI pipeline to maintain consistency across all contributors.</p>
     <p>Mastering commit messages is a fundamental step toward becoming a more disciplined and collaborative developer.</p>
 
-    <div class="next-lab">
-      <strong>Next Lab:</strong> Ready to level up? Continue to <a href="../lab_03/">Lab 03 — Free Hosting For Web Projects</a>
-    </div>
+    <section class="knowledge-check" aria-labelledby="knowledge-check-title">
+      <h2 id="knowledge-check-title">Checkpoint: improve your commit history</h2>
+      <p>Write three messages for a feature, a bug fix, and a documentation change. Use a conventional type and describe the user-facing result.</p>
+      <ol>
+        <li>What belongs in a commit subject, and when is a body useful?</li>
+        <li>Which type would you use for a bug fix: <code>feat</code>, <code>fix</code>, or <code>docs</code>?</li>
+      </ol>
+      <details>
+        <summary>Hint and solution</summary>
+        <p>A subject briefly states the change; use a body to explain motivation or context. The bug-fix type is <code>fix</code>. Example: <code>fix: reject expired session tokens</code>.</p>
+      </details>
+    </section>
+    <nav class="next-lab lesson-navigation" aria-label="Lesson navigation">
+      <a href="../lab_o1/">← Previous: Lab 01 — Git and GitHub</a>
+      <a href="../lab_03/">Next: Lab 03 — Hosting (optional) →</a>
+    </nav>
   </main>
 </body>
 </html>

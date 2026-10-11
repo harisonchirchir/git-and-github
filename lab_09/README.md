@@ -1,5 +1,7 @@
 # Git Tags, Versioning, and GitHub Releases
 
+> **Course page:** Use the [published lesson](index.html) for learning outcomes, the step-by-step guide, checkpoint, and solution hints. This Markdown file is a companion reference.
+
 Commits record development history; tags give important commits stable names, often for software versions. GitHub Releases build on tags to publish release notes and downloadable files. This lab covers lightweight and annotated tags, semantic versioning, and a safe release sequence.
 
 ## Step 1: Understand tags
